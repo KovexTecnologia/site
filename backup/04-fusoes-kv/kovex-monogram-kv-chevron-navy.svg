@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 134.75 130" width="512" height="494">
+  <defs>
+    <!-- Barra navy; o chevron (o V rotacionado) é o acento em gradiente azul -->
+    <linearGradient id="kvcn-v" gradientUnits="userSpaceOnUse" x1="89" y1="0" x2="89" y2="130">
+      <stop offset="0" stop-color="#3E70E4"/>
+      <stop offset="1" stop-color="#2247D2"/>
+    </linearGradient>
+  </defs>
+  <path fill="#0A121D" d="M0 0 H35 V130 H0 Z"/>
+  <path fill="url(#kvcn-v)" d="M92.75 0 H134.75 L86 65 L134.75 130 H92.75 L44 65 Z"/>
+</svg>

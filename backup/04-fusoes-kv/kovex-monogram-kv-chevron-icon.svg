@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="512" height="512">
+  <defs>
+    <linearGradient id="kvci-bg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="180" y2="180">
+      <stop offset="0" stop-color="#111E33"/>
+      <stop offset="1" stop-color="#080F1A"/>
+    </linearGradient>
+  </defs>
+  <!-- App icon do K+V chevron em negativo sobre navy -->
+  <rect width="180" height="180" rx="40" fill="url(#kvci-bg)"/>
+  <g transform="translate(32.73 34.75) scale(0.85)" fill="#F8FAFC">
+    <path d="M0 0 H35 V130 H0 Z"/>
+    <path d="M92.75 0 H134.75 L86 65 L134.75 130 H92.75 L44 65 Z"/>
+  </g>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 140" width="512" height="459">
+  <!-- Barra e braco superior do K em navy -->
+  <rect x="18" y="10" width="26" height="120" fill="#0B1E4D"/>
+  <path d="M110 12 L48 68" stroke="#0B1E4D" stroke-width="26" fill="none"/>
+  <!-- O check azul faz o papel de perna do K e de V ao mesmo tempo -->
+  <path d="M40 90 L78 126 L140 26" stroke="#4F8BFF" stroke-width="24" fill="none" stroke-linejoin="miter"/>
+</svg>

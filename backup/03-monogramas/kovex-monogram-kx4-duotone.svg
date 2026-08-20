@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 146 140" width="512" height="491">
+  <defs>
+    <linearGradient id="kx4-grad" gradientUnits="userSpaceOnUse" x1="73" y1="0" x2="73" y2="140">
+      <stop offset="0" stop-color="#3173F2"/>
+      <stop offset="0.5" stop-color="#2A55DC"/>
+      <stop offset="1" stop-color="#2134B5"/>
+    </linearGradient>
+  </defs>
+  <!-- Diagonais completas em azul claro (as caudas do X ficam visiveis a esquerda) -->
+  <path d="M28 104 L121 14" stroke="#6C8CFF" stroke-width="26" fill="none"/>
+  <path d="M28 36 L121 126" stroke="#6C8CFF" stroke-width="26" fill="none"/>
+  <!-- Barra e bracos do K por cima, no gradiente principal -->
+  <rect x="49" y="10" width="26" height="120" fill="url(#kx4-grad)"/>
+  <path d="M58 75 L121 14" stroke="url(#kx4-grad)" stroke-width="26" fill="none"/>
+  <path d="M58 65 L121 126" stroke="url(#kx4-grad)" stroke-width="26" fill="none"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114 130" width="449" height="512">
+  <defs>
+    <linearGradient id="kxv-main" gradientUnits="userSpaceOnUse" x1="57" y1="0" x2="57" y2="130">
+      <stop offset="0" stop-color="#9F6BFA"/>
+      <stop offset="0.5" stop-color="#6D3EF0"/>
+      <stop offset="1" stop-color="#4526C9"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#kxv-main)" d="M0 0 H35 V130 H0 Z"/>
+  <path fill="url(#kxv-main)" d="M71.75 0 H113.75 L44 93 V37 Z"/>
+  <path fill="url(#kxv-main)" d="M68.75 70 L113.75 130 H71.75 L47.75 98 Z"/>
+</svg>

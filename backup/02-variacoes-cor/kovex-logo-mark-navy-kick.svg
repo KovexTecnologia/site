@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114 130" width="449" height="512">
+  <defs>
+    <!-- Inverso da navy: o acento azul vai para a perna (movimento para frente) -->
+    <linearGradient id="kxnk-leg" gradientUnits="userSpaceOnUse" x1="47.75" y1="70" x2="113.75" y2="130">
+      <stop offset="0" stop-color="#3E70E4"/>
+      <stop offset="1" stop-color="#2247D2"/>
+    </linearGradient>
+  </defs>
+  <path fill="#0A121D" d="M0 0 H35 V130 H0 Z"/>
+  <path fill="#0A121D" d="M71.75 0 H113.75 L44 93 V37 Z"/>
+  <path fill="url(#kxnk-leg)" d="M68.75 70 L113.75 130 H71.75 L47.75 98 Z"/>
+</svg>

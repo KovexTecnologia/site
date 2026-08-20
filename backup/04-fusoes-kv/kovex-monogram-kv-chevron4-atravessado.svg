@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.75 130" width="357" height="512">
+  <defs>
+    <linearGradient id="kva-main" gradientUnits="userSpaceOnUse" x1="45" y1="0" x2="45" y2="130">
+      <stop offset="0" stop-color="#3173F2"/>
+      <stop offset="0.5" stop-color="#2A55DC"/>
+      <stop offset="1" stop-color="#2134B5"/>
+    </linearGradient>
+  </defs>
+  <!-- Chevron atravessado: o V rompe a coluna por completo, o vértice chega à borda esquerda.
+       A barra se divide em duas peças com respiro de 6px em volta do V. -->
+  <path fill="url(#kva-main)" d="M0 0 H35 V8.33 L0 55 Z"/>
+  <path fill="url(#kva-main)" d="M0 75 L35 121.67 V130 H0 Z"/>
+  <path fill="url(#kva-main)" d="M48.75 0 H90.75 L42 65 L90.75 130 H48.75 L0 65 Z"/>
+</svg>

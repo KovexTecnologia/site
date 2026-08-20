@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 169.25 130" width="512" height="393">
+  <defs>
+    <linearGradient id="kvf-main" gradientUnits="userSpaceOnUse" x1="84" y1="0" x2="84" y2="130">
+      <stop offset="0" stop-color="#3173F2"/>
+      <stop offset="0.5" stop-color="#2A55DC"/>
+      <stop offset="1" stop-color="#2134B5"/>
+    </linearGradient>
+  </defs>
+  <!-- K + V fundidos: a perna do K continua e sobe como o traço direito de um V de altura total.
+       Todas as diagonais em 4:3 e o traço do V paralelo ao braço, com respiro — mesma linguagem do mark original. -->
+  <path fill="url(#kvf-main)" d="M0 0 H35 V130 H0 Z"/>
+  <path fill="url(#kvf-main)" d="M71.75 0 H113.75 L44 93 V37 Z"/>
+  <path fill="url(#kvf-main)" d="M47.75 98 L68.75 70 L71.75 74 L127.25 0 H169.25 L71.75 130 Z"/>
+</svg>

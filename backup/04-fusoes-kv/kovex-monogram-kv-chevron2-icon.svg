@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="512" height="512">
+  <defs>
+    <linearGradient id="kvei-bg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="180" y2="180">
+      <stop offset="0" stop-color="#111E33"/>
+      <stop offset="1" stop-color="#080F1A"/>
+    </linearGradient>
+  </defs>
+  <!-- App icon do chevron embutido em negativo sobre navy -->
+  <rect width="180" height="180" rx="40" fill="url(#kvei-bg)"/>
+  <g transform="translate(43.9 32.8) scale(0.88)" fill="#F8FAFC">
+    <path d="M0 0 H35 V27 L6.5 65 L35 103 V130 H0 Z"/>
+    <path d="M62.75 0 H104.75 L56 65 L104.75 130 H62.75 L14 65 Z"/>
+  </g>
+</svg>

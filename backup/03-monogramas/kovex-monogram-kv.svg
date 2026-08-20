@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 146 140" width="512" height="491">
+  <defs>
+    <linearGradient id="kv-grad" gradientUnits="userSpaceOnUse" x1="73" y1="0" x2="73" y2="140">
+      <stop offset="0" stop-color="#3173F2"/>
+      <stop offset="0.5" stop-color="#2A55DC"/>
+      <stop offset="1" stop-color="#2134B5"/>
+    </linearGradient>
+  </defs>
+  <!-- Barra vertical do K -->
+  <rect x="18" y="10" width="26" height="120" fill="url(#kv-grad)"/>
+  <!-- Traco continuo: braco superior do K que desce e forma um V -->
+  <path d="M114 12 L50 70 L86 130 L122 66" stroke="url(#kv-grad)" stroke-width="26" fill="none" stroke-linejoin="miter" stroke-miterlimit="4"/>
+</svg>

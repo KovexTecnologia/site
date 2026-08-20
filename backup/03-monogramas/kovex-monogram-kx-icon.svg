@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="512" height="512">
+  <!-- App icon: fundo navy, monograma K+X em branco -->
+  <rect x="0" y="0" width="180" height="180" rx="40" fill="#0B1E4D"/>
+  <g transform="translate(90,90) scale(0.82) translate(-73,-70)">
+    <rect x="49" y="10" width="26" height="120" fill="#FFFFFF"/>
+    <path d="M41 91 L121 14" stroke="#FFFFFF" stroke-width="26" fill="none"/>
+    <path d="M41 49 L121 126" stroke="#FFFFFF" stroke-width="26" fill="none"/>
+  </g>
+</svg>

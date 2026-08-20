@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 169.25 130" width="512" height="393">
+  <defs>
+    <!-- Estrutura navy; o V (perna que continua) é o acento azul, contando a história K -> V -->
+    <linearGradient id="kvfn-v" gradientUnits="userSpaceOnUse" x1="127.25" y1="0" x2="71.75" y2="130">
+      <stop offset="0" stop-color="#3E70E4"/>
+      <stop offset="1" stop-color="#2247D2"/>
+    </linearGradient>
+  </defs>
+  <path fill="#0A121D" d="M0 0 H35 V130 H0 Z"/>
+  <path fill="#0A121D" d="M71.75 0 H113.75 L44 93 V37 Z"/>
+  <path fill="url(#kvfn-v)" d="M47.75 98 L68.75 70 L71.75 74 L127.25 0 H169.25 L71.75 130 Z"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 140" width="512" height="448">
+  <defs>
+    <linearGradient id="kx2-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="140">
+      <stop offset="0" stop-color="#3173F2"/>
+      <stop offset="0.5" stop-color="#2A55DC"/>
+      <stop offset="1" stop-color="#2134B5"/>
+    </linearGradient>
+  </defs>
+  <!-- Ligadura: barra do K + X encostado nos cantos -->
+  <rect x="22" y="10" width="26" height="120" fill="url(#kx2-grad)"/>
+  <path d="M48 24 L124 116" stroke="url(#kx2-grad)" stroke-width="26" fill="none"/>
+  <path d="M48 116 L124 24" stroke="url(#kx2-grad)" stroke-width="26" fill="none"/>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114 130" width="449" height="512">
+  <defs>
+    <!-- Mesma paleta do original, mas cada plano recebe luz diferente: efeito facetado sutil -->
+    <linearGradient id="kxf-bar" gradientUnits="userSpaceOnUse" x1="17.5" y1="0" x2="17.5" y2="130">
+      <stop offset="0" stop-color="#3B7BF5"/>
+      <stop offset="1" stop-color="#2440C4"/>
+    </linearGradient>
+    <linearGradient id="kxf-arm" gradientUnits="userSpaceOnUse" x1="113.75" y1="0" x2="44" y2="93">
+      <stop offset="0" stop-color="#5B8FF7"/>
+      <stop offset="1" stop-color="#2A55DC"/>
+    </linearGradient>
+    <linearGradient id="kxf-leg" gradientUnits="userSpaceOnUse" x1="47.75" y1="70" x2="113.75" y2="130">
+      <stop offset="0" stop-color="#2A55DC"/>
+      <stop offset="1" stop-color="#1D2FA8"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#kxf-bar)" d="M0 0 H35 V130 H0 Z"/>
+  <path fill="url(#kxf-arm)" d="M71.75 0 H113.75 L44 93 V37 Z"/>
+  <path fill="url(#kxf-leg)" d="M68.75 70 L113.75 130 H71.75 L47.75 98 Z"/>
+</svg>

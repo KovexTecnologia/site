@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 170" width="620" height="170">
+  <rect width="620" height="170" fill="#FFFFFF"/>
+  <defs>
+    <linearGradient id="kvh-grad" gradientUnits="userSpaceOnUse" x1="0" y1="15" x2="0" y2="155">
+      <stop offset="0" stop-color="#3173F2"/>
+      <stop offset="0.5" stop-color="#2A55DC"/>
+      <stop offset="1" stop-color="#2134B5"/>
+    </linearGradient>
+  </defs>
+  <!-- Monograma K+V -->
+  <g transform="translate(16,15)">
+    <rect x="18" y="10" width="26" height="120" fill="url(#kvh-grad)"/>
+    <path d="M114 12 L50 70 L86 130 L122 66" stroke="url(#kvh-grad)" stroke-width="26" fill="none" stroke-linejoin="miter"/>
+  </g>
+  <!-- Nome -->
+  <text x="188" y="102" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="66" fill="#14171F">Kovex</text>
+  <text x="191" y="134" font-family="Arial, sans-serif" font-weight="400" font-size="24" letter-spacing="3" fill="#6B7280">TECNOLOGIA</text>
+</svg>

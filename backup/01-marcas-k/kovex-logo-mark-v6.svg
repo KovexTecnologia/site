@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="512" height="512">
+  <defs>
+    <linearGradient id="kovex-blue" gradientUnits="userSpaceOnUse" x1="127" y1="3" x2="68.5" y2="61.5">
+      <stop offset="0" stop-color="#3E70E4"/>
+      <stop offset="1" stop-color="#2247D2"/>
+    </linearGradient>
+  </defs>
+  <!-- Barra vertical + perna diagonal (peça única com bisel 45° e recorte em V) -->
+  <path fill="#0A121D" d="M1 3 H55 L28 30 L123 125 H75 L38 88 L1 125 Z"/>
+  <!-- Fita azul diagonal a 45° com ponta -->
+  <path fill="url(#kovex-blue)" d="M85 3 H127 L68.5 61.5 L47.5 40.5 Z"/>
+</svg>

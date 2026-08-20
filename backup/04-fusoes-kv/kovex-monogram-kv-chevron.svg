@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 134.75 130" width="512" height="494">
+  <defs>
+    <linearGradient id="kvc-main" gradientUnits="userSpaceOnUse" x1="67" y1="0" x2="67" y2="130">
+      <stop offset="0" stop-color="#3173F2"/>
+      <stop offset="0.5" stop-color="#2A55DC"/>
+      <stop offset="1" stop-color="#2134B5"/>
+    </linearGradient>
+  </defs>
+  <!-- K cujo braço e perna são uma peça única: um V rotacionado 90°.
+       O K contém o V — lido de frente é K, girado é V. Diagonais 4:3, vão de 9px até a barra. -->
+  <path fill="url(#kvc-main)" d="M0 0 H35 V130 H0 Z"/>
+  <path fill="url(#kvc-main)" d="M92.75 0 H134.75 L86 65 L134.75 130 H92.75 L44 65 Z"/>
+</svg>

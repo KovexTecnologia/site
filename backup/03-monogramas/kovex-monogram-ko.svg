@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" width="512" height="512">
+  <defs>
+    <linearGradient id="ko-grad" gradientUnits="userSpaceOnUse" x1="70" y1="0" x2="70" y2="140">
+      <stop offset="0" stop-color="#3173F2"/>
+      <stop offset="0.5" stop-color="#2A55DC"/>
+      <stop offset="1" stop-color="#2134B5"/>
+    </linearGradient>
+  </defs>
+  <!-- Anel: a letra O -->
+  <circle cx="70" cy="70" r="58" fill="none" stroke="url(#ko-grad)" stroke-width="13"/>
+  <!-- K compacto dentro do O -->
+  <rect x="44" y="36" width="18" height="68" fill="url(#ko-grad)"/>
+  <path d="M60 72 L98 38" stroke="url(#ko-grad)" stroke-width="18" fill="none"/>
+  <path d="M60 68 L98 102" stroke="url(#ko-grad)" stroke-width="18" fill="none"/>
+</svg>

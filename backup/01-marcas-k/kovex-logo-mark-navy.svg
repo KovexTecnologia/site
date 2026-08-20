@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114 130" width="449" height="512">
+  <defs>
+    <!-- Braço azul no estilo da logo 6: gradiente ao longo da fita -->
+    <linearGradient id="kxn-arm" gradientUnits="userSpaceOnUse" x1="113.75" y1="0" x2="44" y2="93">
+      <stop offset="0" stop-color="#3E70E4"/>
+      <stop offset="1" stop-color="#2247D2"/>
+    </linearGradient>
+  </defs>
+  <path fill="#0A121D" d="M0 0 H35 V130 H0 Z"/>
+  <!-- Braço único (dobra incorporada): aresta direita reta de (113.75,0) a (44,93) -->
+  <path fill="url(#kxn-arm)" d="M71.75 0 H113.75 L44 93 V37 Z"/>
+  <path fill="#0A121D" d="M68.75 70 L113.75 130 H71.75 L47.75 98 Z"/>
+</svg>

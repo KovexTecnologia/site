@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 146 140" width="512" height="491">
+  <defs>
+    <linearGradient id="kx-grad" gradientUnits="userSpaceOnUse" x1="73" y1="0" x2="73" y2="140">
+      <stop offset="0" stop-color="#3173F2"/>
+      <stop offset="0.5" stop-color="#2A55DC"/>
+      <stop offset="1" stop-color="#2134B5"/>
+    </linearGradient>
+  </defs>
+  <!-- Barra vertical do K -->
+  <rect x="49" y="10" width="26" height="120" fill="url(#kx-grad)"/>
+  <!-- Diagonal ascendente: braco superior do K + cauda inferior-esquerda (forma o X) -->
+  <path d="M41 91 L121 14" stroke="url(#kx-grad)" stroke-width="26" fill="none"/>
+  <!-- Diagonal descendente: perna inferior do K + cauda superior-esquerda (forma o X) -->
+  <path d="M41 49 L121 126" stroke="url(#kx-grad)" stroke-width="26" fill="none"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114 130" width="449" height="512">
+  <defs>
+    <!-- Gradiente global: azul brilhante no topo -> índigo profundo na base -->
+    <linearGradient id="kx-main" gradientUnits="userSpaceOnUse" x1="57" y1="0" x2="57" y2="130">
+      <stop offset="0" stop-color="#3173F2"/>
+      <stop offset="0.5" stop-color="#2A55DC"/>
+      <stop offset="1" stop-color="#2134B5"/>
+    </linearGradient>
+  </defs>
+  <!-- Barra vertical -->
+  <path fill="url(#kx-main)" d="M0 0 H35 V130 H0 Z"/>
+  <!-- Braço superior único (dobra incorporada, mesma cor) -->
+  <path fill="url(#kx-main)" d="M71.75 0 H113.75 L44 93 V37 Z"/>
+  <!-- Perna inferior com respiro paralelo de 6px -->
+  <path fill="url(#kx-main)" d="M68.75 70 L113.75 130 H71.75 L47.75 98 Z"/>
+</svg>
