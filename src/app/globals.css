@@ -1,34 +1,48 @@
 @import "tailwindcss";
 
+/*
+ * Tema claro e editorial. So claro, de proposito: a Kovex e a empresa, o
+ * MakerDesk e o produto (escuro). O contraste de tema separa um do outro.
+ *
+ * Cores da marca (brand/README.md): navy #0A121D, azul #3E70E4 -> #2247D2,
+ * cobalto chapado #2A55DC, branco #F8FAFC. O resto e derivado delas.
+ */
 @theme {
-  /* Paleta oficial Kovex (brand/README.md) */
-  --color-ink-950: #060b12;
-  --color-ink-900: #0a121d;
-  --color-ink-850: #0e1826;
-  --color-ink-800: #111e33;
-  --color-ink-700: #1a2942;
-  --color-ink-600: #26374f;
+  --color-canvas: #f5f6f8;
+  --color-surface: #ffffff;
 
-  --color-cobalt-400: #5b87ec;
-  --color-cobalt-500: #3e70e4;
-  --color-cobalt-600: #2a55dc;
-  --color-cobalt-700: #2247d2;
+  --color-ink: #0a121d;
+  --color-ink-soft: #334052;
+  --color-muted: #5a6576;
+  --color-faint: #8b95a4;
 
+  --color-rule: #dfe3ea;
+  --color-rule-strong: #c4cbd6;
+
+  --color-cobalt: #2a55dc;
+  --color-cobalt-deep: #2247d2;
+  --color-cobalt-bright: #3e70e4;
+  --color-cobalt-wash: #e9eefc;
+
+  --color-navy: #0a121d;
+  --color-navy-raised: #111e33;
   --color-paper: #f8fafc;
-  --color-mute: #93a1b8;
-  --color-mute-dim: #64748b;
+  --color-paper-mute: #a3afc2;
 
-  --font-display: var(--font-archivo), "Segoe UI", Arial, sans-serif;
-  --font-sans: var(--font-plex-sans), "Segoe UI", Arial, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, "Cascadia Mono", monospace;
+  --color-ok: #15803d;
+  --color-danger: #b42318;
 
-  --radius-xs: 2px;
-  --radius-sm: 3px;
+  --font-display: var(--font-barlow), "Bahnschrift", "Segoe UI", Arial, sans-serif;
+  --font-sans: var(--font-inter), "Segoe UI", Arial, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
 }
 
 @layer base {
   * {
-    border-color: color-mix(in oklab, var(--color-paper) 10%, transparent);
+    border-color: var(--color-rule);
   }
 
   html {
@@ -44,15 +58,16 @@
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
   }
 
   body {
-    background-color: var(--color-ink-950);
-    color: var(--color-paper);
+    background-color: var(--color-canvas);
+    color: var(--color-ink-soft);
     font-family: var(--font-sans);
-    font-feature-settings: "kern", "liga", "calt";
+    font-feature-settings: "kern", "liga", "calt", "cv11";
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
@@ -61,9 +76,10 @@
   h2,
   h3,
   h4 {
+    color: var(--color-ink);
     font-family: var(--font-display);
     font-weight: 600;
-    letter-spacing: -0.028em;
+    letter-spacing: -0.012em;
     text-wrap: balance;
   }
 
@@ -72,51 +88,61 @@
   }
 
   ::selection {
-    background: var(--color-cobalt-600);
+    background: var(--color-cobalt);
     color: var(--color-paper);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-cobalt-400);
+    outline: 2px solid var(--color-cobalt);
     outline-offset: 3px;
+  }
+
+  /* Ancoras nao somem atras do cabecalho fixo. */
+  [id] {
+    scroll-margin-top: 5.5rem;
   }
 }
 
 @utility container-kx {
   width: 100%;
-  max-width: 78rem;
+  max-width: 76rem;
   margin-inline: auto;
-  padding-inline: 1.5rem;
+  padding-inline: 1.25rem;
+
+  @media (min-width: 640px) {
+    padding-inline: 2rem;
+  }
 
   @media (min-width: 1024px) {
     padding-inline: 2.5rem;
   }
 }
 
-/* Regua tipografica das secoes: 01 / LABEL */
-@utility eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.16em;
+/* Rotulo das secoes e de metadados: caixa alta, espacado, na fonte da marca. */
+@utility label {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-mute-dim);
+  color: var(--color-muted);
 }
 
-/* Malha tecnica discreta usada atras do hero */
-@utility grid-plot {
-  background-image: linear-gradient(
-      to right,
-      color-mix(in oklab, var(--color-paper) 4%, transparent) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      color-mix(in oklab, var(--color-paper) 4%, transparent) 1px,
-      transparent 1px
-    );
-  background-size: 64px 64px;
+@utility tabular {
+  font-variant-numeric: tabular-nums;
 }
 
-@utility hairline {
-  border-color: color-mix(in oklab, var(--color-paper) 10%, transparent);
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility animate-rise {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }

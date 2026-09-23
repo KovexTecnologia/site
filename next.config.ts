@@ -23,6 +23,19 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  async redirects() {
+    return [
+      // kovex.com.br e o dominio principal; o antigo so redireciona.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "(www\\.)?kovextecnologia\\.com\\.br" }],
+        destination: "https://kovex.com.br/:path*",
+        permanent: true,
+      },
+      // endereco da politica no site anterior
+      { source: "/politica-de-privacidade", destination: "/privacidade", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

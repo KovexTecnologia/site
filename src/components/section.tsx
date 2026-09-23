@@ -1,52 +1,56 @@
 import type { ReactNode } from "react";
 
+/**
+ * Secao editorial: filete no topo, rotulo numerado na coluna da esquerda e o
+ * conteudo nas nove colunas da direita. O `children` volta para a largura toda,
+ * para grades de cards que precisam de espaco.
+ */
 export function Section({
   id,
-  children,
-  className = "",
-}: {
-  id?: string;
-  children: ReactNode;
-  className?: string;
-}) {
-  return (
-    <section
-      id={id}
-      className={`scroll-mt-24 border-b border-paper/10 py-24 lg:py-32 ${className}`}
-    >
-      <div className="container-kx">{children}</div>
-    </section>
-  );
-}
-
-export function SectionHead({
-  index,
+  number,
   label,
   title,
   lead,
+  children,
+  className = "",
 }: {
-  index: string;
+  id: string;
+  number: string;
   label: string;
-  title: string;
-  lead?: string;
+  title: ReactNode;
+  lead?: ReactNode;
+  children?: ReactNode;
+  className?: string;
 }) {
+  const headingId = `${id}-titulo`;
+
   return (
-    <header className="grid gap-8 lg:grid-cols-12 lg:gap-12">
-      <div className="lg:col-span-12">
-        <p className="eyebrow flex items-center gap-4">
-          <span>{index}</span>
-          <span className="h-px w-8 bg-paper/25" aria-hidden />
-          <span>{label}</span>
-        </p>
+    <section id={id} aria-labelledby={headingId} className={`py-14 lg:py-20 ${className}`}>
+      <div className="container-kx">
+        <div className="grid gap-y-6 border-t border-rule-strong pt-6 lg:grid-cols-12 lg:gap-x-10">
+          <p className="label tabular lg:col-span-3">
+            <span className="text-cobalt">{number}</span>
+            <span className="mx-2 text-faint" aria-hidden>
+              /
+            </span>
+            {label}
+          </p>
+
+          <div className="lg:col-span-9">
+            <h2
+              id={headingId}
+              className="max-w-3xl text-[clamp(2rem,4.2vw,3.4rem)] leading-[1.02]"
+            >
+              {title}
+            </h2>
+            {lead ? (
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{lead}</p>
+            ) : null}
+          </div>
+        </div>
+
+        {children ? <div className="mt-14 lg:mt-20">{children}</div> : null}
       </div>
-      <h2 className="text-[clamp(1.9rem,3.6vw,3rem)] leading-[1.05] lg:col-span-6">
-        {title}
-      </h2>
-      {lead ? (
-        <p className="text-lg leading-relaxed text-mute lg:col-span-5 lg:col-start-8">
-          {lead}
-        </p>
-      ) : null}
-    </header>
+    </section>
   );
 }

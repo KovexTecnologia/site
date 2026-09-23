@@ -4,10 +4,11 @@ import { useActionState, useId } from "react";
 import { useFormStatus } from "react-dom";
 
 import { submitContact } from "@/app/actions";
-import { initialContactState } from "@/lib/contact-state";
+import { contact } from "@/content/site-content";
+import { initialContactState, type ContactField } from "@/lib/contact-state";
 
 const fieldBase =
-  "w-full rounded-xs border bg-ink-950 px-4 py-3.5 text-[0.95rem] text-paper placeholder:text-mute-dim/70 transition-colors focus:border-cobalt-500 focus:outline-none";
+  "mt-2 w-full rounded-sm border bg-surface px-4 py-3 text-base text-ink placeholder:text-faint transition-colors focus:border-cobalt focus:ring-2 focus:ring-cobalt/15 focus:outline-none";
 
 function Submit() {
   const { pending } = useFormStatus();
@@ -15,13 +16,10 @@ function Submit() {
     <button
       type="submit"
       disabled={pending}
-      className="group inline-flex w-full items-center justify-center gap-3 rounded-xs bg-cobalt-600 px-7 py-4 text-sm font-medium tracking-wide transition-colors hover:bg-cobalt-500 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+      className="group inline-flex w-full items-center justify-center gap-3 rounded-sm bg-ink px-7 py-4 text-[0.95rem] font-medium text-paper transition-colors hover:bg-cobalt disabled:cursor-wait disabled:opacity-60 sm:w-auto"
     >
       {pending ? "Enviando…" : "Enviar mensagem"}
-      <span
-        aria-hidden
-        className="transition-transform duration-200 group-hover:translate-x-1"
-      >
+      <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-1">
         →
       </span>
     </button>
@@ -34,35 +32,42 @@ export function ContactForm() {
 
   if (state.status === "success") {
     return (
-      <div
-        role="status"
-        className="border border-cobalt-500/40 bg-ink-900/60 p-10"
-      >
-        <p className="eyebrow text-cobalt-400">Mensagem recebida</p>
-        <p className="mt-6 font-display text-2xl leading-snug">
-          Obrigado. Já está na caixa de entrada do time técnico.
-        </p>
-        <p className="mt-4 leading-relaxed text-mute">
-          {state.message ??
-            "Retornamos em até um dia útil com uma primeira leitura do problema."}
+      <div role="status" className="rounded-lg border border-rule bg-surface p-8 sm:p-10">
+        <span
+          aria-hidden
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-cobalt-wash text-lg text-cobalt"
+        >
+          ✓
+        </span>
+        <p className="mt-6 font-display text-2xl font-semibold text-ink">Mensagem enviada.</p>
+        <p className="mt-3 leading-relaxed text-muted">
+          Obrigado pelo contato. Vamos responder no e-mail que você informou.
         </p>
       </div>
     );
   }
 
   const err = state.errors ?? {};
-  const line = (hasError: boolean) =>
-    `${fieldBase} ${hasError ? "border-red-400/70" : "border-paper/15 hover:border-paper/30"}`;
+  const values = state.values ?? {};
+  const border = (field: ContactField) =>
+    err[field] ? "border-danger" : "border-rule-strong hover:border-faint";
+  const describedBy = (field: ContactField) => (err[field] ? `${uid}-${field}-erro` : undefined);
+  const errorText = (field: ContactField) =>
+    err[field] ? (
+      <p id={`${uid}-${field}-erro`} className="mt-2 text-sm text-danger">
+        {err[field]}
+      </p>
+    ) : null;
 
   return (
     <form
       action={action}
       noValidate
-      className="relative border border-paper/12 p-8 lg:p-10"
+      className="relative rounded-lg border border-rule bg-surface p-6 sm:p-10"
     >
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
-          <label htmlFor={`${uid}-nome`} className="eyebrow block">
+          <label htmlFor={`${uid}-nome`} className="text-sm font-medium text-ink">
             Nome
           </label>
           <input
@@ -71,43 +76,17 @@ export function ContactForm() {
             type="text"
             autoComplete="name"
             required
+            defaultValue={values.nome}
             aria-invalid={Boolean(err.nome)}
-            aria-describedby={err.nome ? `${uid}-nome-erro` : undefined}
-            className={`mt-3 ${line(Boolean(err.nome))}`}
-            placeholder="Como podemos te chamar"
+            aria-describedby={describedBy("nome")}
+            className={`${fieldBase} ${border("nome")}`}
           />
-          {err.nome ? (
-            <p id={`${uid}-nome-erro`} className="mt-2 text-xs text-red-300">
-              {err.nome}
-            </p>
-          ) : null}
+          {errorText("nome")}
         </div>
 
         <div>
-          <label htmlFor={`${uid}-empresa`} className="eyebrow block">
-            Empresa
-          </label>
-          <input
-            id={`${uid}-empresa`}
-            name="empresa"
-            type="text"
-            autoComplete="organization"
-            required
-            aria-invalid={Boolean(err.empresa)}
-            aria-describedby={err.empresa ? `${uid}-empresa-erro` : undefined}
-            className={`mt-3 ${line(Boolean(err.empresa))}`}
-            placeholder="Razão social ou nome fantasia"
-          />
-          {err.empresa ? (
-            <p id={`${uid}-empresa-erro`} className="mt-2 text-xs text-red-300">
-              {err.empresa}
-            </p>
-          ) : null}
-        </div>
-
-        <div>
-          <label htmlFor={`${uid}-email`} className="eyebrow block">
-            E-mail corporativo
+          <label htmlFor={`${uid}-email`} className="text-sm font-medium text-ink">
+            E-mail
           </label>
           <input
             id={`${uid}-email`}
@@ -115,21 +94,35 @@ export function ContactForm() {
             type="email"
             autoComplete="email"
             required
+            defaultValue={values.email}
             aria-invalid={Boolean(err.email)}
-            aria-describedby={err.email ? `${uid}-email-erro` : undefined}
-            className={`mt-3 ${line(Boolean(err.email))}`}
+            aria-describedby={describedBy("email")}
+            className={`${fieldBase} ${border("email")}`}
             placeholder="voce@empresa.com.br"
           />
-          {err.email ? (
-            <p id={`${uid}-email-erro`} className="mt-2 text-xs text-red-300">
-              {err.email}
-            </p>
-          ) : null}
+          {errorText("email")}
         </div>
 
         <div>
-          <label htmlFor={`${uid}-telefone`} className="eyebrow block">
-            Telefone <span className="normal-case">(opcional)</span>
+          <label htmlFor={`${uid}-empresa`} className="text-sm font-medium text-ink">
+            Empresa <span className="font-normal text-muted">(opcional)</span>
+          </label>
+          <input
+            id={`${uid}-empresa`}
+            name="empresa"
+            type="text"
+            autoComplete="organization"
+            defaultValue={values.empresa}
+            aria-invalid={Boolean(err.empresa)}
+            aria-describedby={describedBy("empresa")}
+            className={`${fieldBase} ${border("empresa")}`}
+          />
+          {errorText("empresa")}
+        </div>
+
+        <div>
+          <label htmlFor={`${uid}-telefone`} className="text-sm font-medium text-ink">
+            WhatsApp <span className="font-normal text-muted">(opcional)</span>
           </label>
           <input
             id={`${uid}-telefone`}
@@ -137,37 +130,59 @@ export function ContactForm() {
             type="tel"
             autoComplete="tel"
             inputMode="tel"
+            defaultValue={values.telefone}
             aria-invalid={Boolean(err.telefone)}
-            aria-describedby={err.telefone ? `${uid}-telefone-erro` : undefined}
-            className={`mt-3 ${line(Boolean(err.telefone))}`}
-            placeholder="(11) 90000-0000"
+            aria-describedby={describedBy("telefone")}
+            className={`${fieldBase} ${border("telefone")}`}
+            placeholder="(00) 00000-0000"
           />
-          {err.telefone ? (
-            <p id={`${uid}-telefone-erro`} className="mt-2 text-xs text-red-300">
-              {err.telefone}
-            </p>
-          ) : null}
+          {errorText("telefone")}
         </div>
 
+        <fieldset className="sm:col-span-2" aria-describedby={describedBy("assunto")}>
+          <legend className="text-sm font-medium text-ink">Assunto</legend>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {contact.subjects.map((subject) => (
+              <label key={subject} className="cursor-pointer">
+                <input
+                  type="radio"
+                  name="assunto"
+                  value={subject}
+                  required
+                  defaultChecked={values.assunto === subject}
+                  className="peer sr-only"
+                />
+                <span
+                  className={`inline-block rounded-full border px-4 py-2 text-sm transition-colors peer-checked:border-ink peer-checked:bg-ink peer-checked:text-paper peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-cobalt ${
+                    err.assunto
+                      ? "border-danger text-ink-soft"
+                      : "border-rule-strong text-ink-soft hover:border-ink"
+                  }`}
+                >
+                  {subject}
+                </span>
+              </label>
+            ))}
+          </div>
+          {errorText("assunto")}
+        </fieldset>
+
         <div className="sm:col-span-2">
-          <label htmlFor={`${uid}-mensagem`} className="eyebrow block">
-            O que precisa ser resolvido
+          <label htmlFor={`${uid}-mensagem`} className="text-sm font-medium text-ink">
+            Mensagem
           </label>
           <textarea
             id={`${uid}-mensagem`}
             name="mensagem"
             rows={5}
             required
+            defaultValue={values.mensagem}
             aria-invalid={Boolean(err.mensagem)}
-            aria-describedby={err.mensagem ? `${uid}-mensagem-erro` : undefined}
-            className={`mt-3 resize-y ${line(Boolean(err.mensagem))}`}
-            placeholder="Qual processo trava hoje, quantas pessoas dependem dele e o que já existe de sistema."
+            aria-describedby={describedBy("mensagem")}
+            className={`${fieldBase} resize-y ${border("mensagem")}`}
+            placeholder="O que você precisa resolver, o que já existe hoje e qual o prazo que você tem em mente."
           />
-          {err.mensagem ? (
-            <p id={`${uid}-mensagem-erro`} className="mt-2 text-xs text-red-300">
-              {err.mensagem}
-            </p>
-          ) : null}
+          {errorText("mensagem")}
         </div>
       </div>
 
@@ -183,35 +198,28 @@ export function ContactForm() {
           name="consentimento"
           type="checkbox"
           required
+          defaultChecked={Boolean(state.values) && !err.consentimento}
           aria-invalid={Boolean(err.consentimento)}
-          className="mt-1 h-4 w-4 shrink-0 accent-cobalt-600"
+          aria-describedby={describedBy("consentimento")}
+          className="mt-1 h-4 w-4 shrink-0 accent-cobalt"
         />
-        <label
-          htmlFor={`${uid}-consentimento`}
-          className="text-sm leading-relaxed text-mute"
-        >
-          Autorizo a Kovex a usar estes dados para responder a este contato,
-          conforme a{" "}
-          <a
-            href="/politica-de-privacidade"
-            className="text-paper underline underline-offset-4 hover:text-cobalt-400"
-          >
-            Política de Privacidade
-          </a>
-          .
-          {err.consentimento ? (
-            <span className="mt-1 block text-xs text-red-300">
-              {err.consentimento}
-            </span>
-          ) : null}
-        </label>
+        <div>
+          <label htmlFor={`${uid}-consentimento`} className="text-sm leading-relaxed text-muted">
+            Autorizo a Kovex a usar estes dados para responder a este contato, conforme a{" "}
+            <a
+              href="/privacidade"
+              className="text-ink underline underline-offset-4 hover:text-cobalt"
+            >
+              Política de Privacidade
+            </a>
+            .
+          </label>
+          {errorText("consentimento")}
+        </div>
       </div>
 
       {state.status === "error" && state.message ? (
-        <p
-          role="alert"
-          className="mt-6 border-l-2 border-red-400 pl-4 text-sm text-red-300"
-        >
+        <p role="alert" className="mt-6 border-l-2 border-danger pl-4 text-sm text-danger">
           {state.message}
         </p>
       ) : null}

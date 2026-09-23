@@ -1,11 +1,14 @@
 /**
- * Fonte unica de verdade dos dados institucionais.
- * Tudo que aparece em SEO, JSON-LD, rodape e formulario sai daqui.
+ * Fonte unica dos dados institucionais. Rodape, pagina de privacidade, JSON-LD e
+ * formulario leem daqui — trocar um dado aqui troca em todo o site.
  *
- * >>> PREENCHER com os dados reais antes de publicar: cnpj, endereco, telefone e perfis sociais.
+ * Dados conferidos com o comprovante de inscricao do CNPJ (emitido em 23/09/2026).
  */
 
-const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kovextech.com.br";
+const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kovex.com.br";
+
+/** So digitos, com DDI — o formato que o wa.me exige. */
+const whatsapp = "5579981348819";
 
 export const siteConfig = {
   name: "Kovex Tecnologia",
@@ -13,41 +16,34 @@ export const siteConfig = {
   legalName: "Kovex Tecnologia LTDA",
   url: rawUrl.replace(/\/$/, ""),
   locale: "pt-BR",
-  tagline: "Software sob medida para operações que o produto de prateleira não resolve.",
   description:
-    "A Kovex Tecnologia projeta, constrói e sustenta sistemas web, integrações e aplicações internas sob medida para empresas. Time sênior, entrega em ciclos de duas semanas e código no nome do cliente.",
+    "A Kovex Tecnologia desenvolve produtos próprios, como o MakerDesk, e software sob medida para empresas: sistemas web, aplicativos, integrações, consultoria e sustentação.",
   shortDescription:
-    "Fábrica de software sob medida: sistemas internos, integrações e modernização de legados.",
-  foundingYear: "2019", // PREENCHER: ano real de fundacao
-  cnpj: "00.000.000/0001-00", // PREENCHER
-  email: "contato@kovextech.com.br",
-  phone: "+55 11 90000-0000", // PREENCHER
-  phoneE164: "+5511900000000", // PREENCHER (usado em tel: e JSON-LD)
-  whatsapp: "5511900000000", // PREENCHER (somente digitos, com DDI)
+    "Empresa de software: produtos próprios e desenvolvimento sob medida.",
+  cnpj: "68.036.280/0001-21",
+  /** Data de abertura no CNPJ. */
+  foundingDate: "2026-07-15",
+  email: "contato@kovex.com.br",
+  whatsapp,
+  whatsappUrl: `https://wa.me/${whatsapp}`,
+  /** Celular brasileiro: 13 digitos (DDI + DDD + 9). Se virar fixo, ajustar os cortes. */
+  phoneDisplay: `(${whatsapp.slice(2, 4)}) ${whatsapp.slice(4, 9)}-${whatsapp.slice(9)}`,
+  phoneE164: `+${whatsapp}`,
   address: {
-    street: "Av. Exemplo, 1000 — conj. 91", // PREENCHER
-    district: "Itaim Bibi",
-    city: "São Paulo",
-    state: "SP",
-    postalCode: "04000-000", // PREENCHER
+    street: "Av. Cristóvão Colombo, 2144",
+    complement: "sala 408, 3º andar",
+    district: "Floresta",
+    city: "Porto Alegre",
+    state: "RS",
+    postalCode: "90560-001",
     country: "BR",
   },
-  geo: { latitude: -23.5868, longitude: -46.6817 }, // PREENCHER
-  social: {
-    linkedin: "https://www.linkedin.com/company/kovextech", // PREENCHER
-    instagram: "https://www.instagram.com/kovextech", // PREENCHER
-    github: "https://github.com/kovextech", // PREENCHER
-  },
-  areaServed: ["São Paulo", "Brasil"],
-  openingHours: "Mo-Fr 09:00-18:00",
 } as const;
 
 export const nav = [
+  { label: "Produtos", href: "/#produtos" },
   { label: "Serviços", href: "/#servicos" },
-  { label: "Método", href: "/#metodo" },
-  { label: "Trabalhos", href: "/#trabalhos" },
-  { label: "Stack", href: "/#stack" },
-  { label: "Dúvidas", href: "/#duvidas" },
+  { label: "Como trabalhamos", href: "/#como-trabalhamos" },
 ] as const;
 
 export type SiteConfig = typeof siteConfig;

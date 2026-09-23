@@ -4,9 +4,10 @@
  */
 export type ContactField =
   | "nome"
-  | "empresa"
   | "email"
+  | "empresa"
   | "telefone"
+  | "assunto"
   | "mensagem"
   | "consentimento";
 
@@ -14,6 +15,8 @@ export type ContactState = {
   status: "idle" | "success" | "error";
   message?: string;
   errors?: Partial<Record<ContactField, string>>;
+  /** Devolve o que foi digitado quando da erro, para o formulario nao zerar. */
+  values?: Partial<Record<Exclude<ContactField, "consentimento">, string>>;
 };
 
 export const initialContactState: ContactState = { status: "idle" };

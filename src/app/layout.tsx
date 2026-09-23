@@ -1,38 +1,33 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Barlow, Inter } from "next/font/google";
 
-import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/json-ld";
+import { SiteJsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/lib/site-config";
 
 import "./globals.css";
 
-const archivo = Archivo({
+/** Barlow e da mesma familia DIN do logotipo (Bahnschrift): titulos conversam com a marca. */
+const barlow = Barlow({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-archivo",
+  variable: "--font-barlow",
   weight: ["500", "600", "700"],
 });
 
-const plexSans = IBM_Plex_Sans({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-plex-sans",
-  weight: ["400", "500", "600"],
+  variable: "--font-inter",
 });
 
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-plex-mono",
-  weight: ["400", "500"],
-});
+const title = "Kovex Tecnologia · Produtos e desenvolvimento de software";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Kovex Tecnologia · Software sob medida para empresas",
+    default: title,
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -42,26 +37,22 @@ export const metadata: Metadata = {
   publisher: siteConfig.legalName,
   category: "technology",
   keywords: [
-    "software sob medida",
-    "desenvolvimento de sistemas",
-    "fábrica de software",
-    "sistema web para empresas",
-    "integração de sistemas",
-    "automação de processos",
-    "modernização de sistema legado",
-    "consultoria de tecnologia",
-    "desenvolvimento Next.js",
     "Kovex Tecnologia",
+    "empresa de software",
+    "desenvolvimento de software sob medida",
+    "desenvolvimento de sistemas web",
+    "desenvolvimento de aplicativos",
+    "consultoria em tecnologia",
+    "sustentação de sistemas",
+    "MakerDesk",
   ],
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "Kovex Tecnologia · Software sob medida para empresas",
+    title,
     description: siteConfig.shortDescription,
     images: [
       {
@@ -69,20 +60,15 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/png",
-        alt: "Kovex Tecnologia — software sob medida para empresas",
+        alt: "Kovex Tecnologia",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kovex Tecnologia · Software sob medida para empresas",
+    title,
     description: siteConfig.shortDescription,
-    images: [
-      {
-        url: "/og-kovex.png",
-        alt: "Kovex Tecnologia — software sob medida para empresas",
-      },
-    ],
+    images: [{ url: "/og-kovex.png", alt: "Kovex Tecnologia" }],
   },
   robots: {
     index: true,
@@ -104,30 +90,24 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  colorScheme: "dark",
-  themeColor: "#0a121d",
+  colorScheme: "light",
+  themeColor: "#f5f6f8",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable}`}
-    >
+    <html lang="pt-BR" className={`${barlow.variable} ${inter.variable}`}>
       <body className="antialiased">
         <a
           href="#conteudo"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-6 focus:z-[100] focus:rounded-xs focus:bg-cobalt-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:rounded-sm focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-paper"
         >
           Pular para o conteúdo
         </a>
         <SiteHeader />
         <main id="conteudo">{children}</main>
         <SiteFooter />
-        <OrganizationJsonLd />
-        <WebSiteJsonLd />
+        <SiteJsonLd />
       </body>
     </html>
   );

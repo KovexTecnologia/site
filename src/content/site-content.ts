@@ -1,200 +1,185 @@
 /**
- * Toda a copy da landing em um lugar so.
+ * Toda a copy da home em um lugar so.
  *
- * Os NUMEROS e os TRABALHOS abaixo sao exemplos plausiveis para dar forma a pagina.
- * Substitua pelos dados reais da Kovex antes de publicar — metrica inventada em site
- * institucional queima confianca na primeira reuniao.
+ * Regra do arquivo: nada de numero, cliente ou prazo que a Kovex nao possa
+ * mostrar numa reuniao. O site anterior tinha metricas e cases de exemplo — o
+ * primeiro cliente que perguntasse por eles derrubava a confianca inteira.
  */
 
 export const hero = {
-  eyebrow: "Kovex Tecnologia · Software sob medida",
-  title: "Software sob medida para operações que o produto de prateleira não resolve.",
-  lead: "Projetamos, construímos e sustentamos sistemas internos, integrações e aplicações web para empresas que precisam de um software que acompanha o processo — não o contrário.",
-  primaryCta: { label: "Falar com um engenheiro", href: "#contato" },
-  secondaryCta: { label: "Ver como trabalhamos", href: "#metodo" },
-  spec: [
-    { k: "Formato", v: "Squad dedicado ou projeto de escopo fechado" },
-    { k: "Primeira entrega", v: "Homologação no ar em 4 a 6 semanas" },
-    { k: "Stack", v: "TypeScript · React · Node · PostgreSQL · AWS" },
-    { k: "Propriedade", v: "Código e infraestrutura no nome do cliente" },
-  ],
+  eyebrow: "Empresa de software",
+  titleStart: "Criamos produtos próprios.",
+  titleEnd: "E construímos o seu.",
+  lead: "A Kovex desenvolve e mantém software próprio, como o MakerDesk, e leva essa mesma experiência para projetos sob medida de outras empresas — do desenho à operação.",
+  primaryCta: { label: "Fale sobre seu projeto", href: "#contato" },
+  secondaryCta: { label: "Conheça os produtos", href: "#produtos" },
 };
 
-/** PREENCHER com números auditáveis. */
-export const stats = [
-  { value: "40+", label: "sistemas entregues e em produção" },
-  { value: "6", label: "semanas até a primeira versão utilizável" },
-  { value: "9", label: "setores atendidos, do varejo à indústria" },
-  { value: "100%", label: "do código e da infra no nome do cliente" },
+/** Indice editorial logo abaixo do hero. */
+export const index = [
+  {
+    number: "01",
+    label: "Produtos",
+    body: "Software próprio, vendido por assinatura.",
+    href: "#produtos",
+  },
+  {
+    number: "02",
+    label: "Serviços",
+    body: "Desenvolvimento sob medida, consultoria e sustentação.",
+    href: "#servicos",
+  },
+  {
+    number: "03",
+    label: "Como trabalhamos",
+    body: "Conversa, proposta por escrito e entregas em etapas.",
+    href: "#como-trabalhamos",
+  },
 ];
+
+export type Product = {
+  id: string;
+  name: string;
+  tagline: string;
+  status: "Em operação" | "Em breve";
+  description: string;
+  features: string[];
+  audience: string;
+  model: string;
+  url: string;
+  urlLabel: string;
+  /** Marca do produto, servida de /public/products. */
+  logo: string;
+};
+
+/**
+ * Produtos da Kovex. Para lancar um novo, adicione um item aqui — a secao,
+ * o rodape e o JSON-LD leem desta lista.
+ */
+export const products: Product[] = [
+  {
+    id: "makerdesk",
+    name: "MakerDesk",
+    tagline: "Gestão para negócios de impressão 3D",
+    status: "Em operação",
+    description:
+      "Plataforma para quem vive de impressão 3D. Calcula o custo real de cada peça e sugere o preço com a margem escolhida, gera orçamentos em PDF e organiza encomendas, materiais, equipe e caixa em um só lugar.",
+    features: [
+      "Custo e preço por peça",
+      "Orçamentos em PDF",
+      "Encomendas e estoque de materiais",
+      "Catálogo público com link próprio",
+      "Equipe com níveis de acesso",
+      "Fluxo de caixa",
+    ],
+    audience: "Makers, ateliês e estúdios de impressão 3D",
+    model: "Assinatura, com plano gratuito",
+    url: "https://www.makerdesk.com.br",
+    urlLabel: "makerdesk.com.br",
+    logo: "/products/makerdesk.svg",
+  },
+];
+
+export const productsNote =
+  "Outros produtos estão em desenvolvimento e entram nesta lista quando forem lançados.";
 
 export const services = [
   {
-    id: "sistemas-internos",
-    title: "Sistemas internos sob medida",
-    body: "Back-offices, portais de cliente, painéis operacionais e o pedaço do processo que o seu ERP nunca cobriu. Construído em cima do fluxo que a sua equipe já executa.",
-    bullets: [
-      "Portais e áreas logadas",
-      "Painéis operacionais e indicadores",
-      "Fluxos de aprovação e trilha de auditoria",
+    number: "01",
+    title: "Software sob medida",
+    body: "Sistemas desenhados a partir do processo da sua empresa, e não o contrário: áreas de cliente, painéis internos, automações e o pedaço da operação que nenhum sistema pronto cobre.",
+    items: [
+      "Sistemas web e painéis internos",
+      "Aplicativos para celular",
+      "Integrações entre sistemas e APIs",
     ],
   },
   {
-    id: "integracoes",
-    title: "Integrações e automação",
-    body: "ERP, e-commerce, gateway de pagamento, transportadora, planilha de controle e a API do parceiro conversando entre si. Fim da digitação dupla e da conciliação manual.",
-    bullets: [
-      "APIs REST e webhooks",
-      "Sincronismo de cadastro e ETL",
-      "Rotinas automáticas de conciliação",
+    number: "02",
+    title: "Consultoria em tecnologia",
+    body: "Para decidir antes de gastar. Avaliamos um sistema que já existe, uma proposta de fornecedor ou a arquitetura de um produto novo, e devolvemos a recomendação por escrito.",
+    items: [
+      "Revisão de arquitetura e código",
+      "Escolha de tecnologia e fornecedor",
+      "Plano de evolução de sistemas",
     ],
   },
   {
-    id: "produto-digital",
-    title: "Produto digital ponta a ponta",
-    body: "Do desenho do problema ao produto em produção, com métrica de uso desde o primeiro dia. Para quem está lançando uma operação nova ou digitalizando um serviço.",
-    bullets: [
-      "Discovery e definição de escopo",
-      "Design de interface e protótipo navegável",
-      "Aplicação web e mobile",
-    ],
-  },
-  {
-    id: "modernizacao",
-    title: "Modernização de legado",
-    body: "Sistema em Delphi, VB, PHP antigo ou Access que ninguém mais quer manter. Migramos por partes, com a operação rodando, sem semana de parada.",
-    bullets: [
-      "Migração incremental por módulo",
-      "Resgate da regra de negócio existente",
-      "Saída do servidor local para a nuvem",
+    number: "03",
+    title: "Sustentação e suporte",
+    body: "Software em produção precisa de alguém olhando. Cuidamos de correções, atualizações, monitoramento e da evolução do sistema depois que ele entra no ar.",
+    items: [
+      "Correções e pequenas evoluções",
+      "Monitoramento e atualizações",
+      "Hospedagem e infraestrutura",
     ],
   },
 ];
 
-export const method = [
-  {
-    step: "01",
-    title: "Diagnóstico",
-    duration: "1 semana · sem custo",
-    body: "Sentamos com quem usa o sistema todo dia, mapeamos o processo real — não o do manual — e devolvemos escopo, riscos, arquitetura sugerida e faixa de investimento por escrito.",
-  },
-  {
-    step: "02",
-    title: "Desenho técnico",
-    duration: "1 a 2 semanas",
-    body: "Modelo de dados, arquitetura, pontos de integração e plano de entrega fatiado. Você aprova o que será construído antes de existir a primeira linha de código.",
-  },
-  {
-    step: "03",
-    title: "Construção em ciclos",
-    duration: "ciclos de 2 semanas",
-    body: "Ambiente de homologação no ar desde o primeiro ciclo. Sua equipe usa e critica o software funcionando a cada quinze dias — nada de demonstração em slide.",
-  },
-  {
-    step: "04",
-    title: "Operação e evolução",
-    duration: "contínuo ou transferência",
-    body: "Deploy, monitoramento, correção com prazo acordado e backlog de evolução. Ou repasse completo de código, infraestrutura e documentação para o seu time.",
-  },
-];
-
-/** PREENCHER: trocar por casos reais (com autorização do cliente) ou remover a seção. */
-export const works = [
-  {
-    sector: "Distribuição",
-    title: "ERP integrado a três marketplaces",
-    body: "Pedido, estoque e nota fiscal sincronizados em tempo real entre o ERP e os canais de venda.",
-    result: "18 mil pedidos por mês deixaram de passar por digitação manual",
-    stack: "Node · PostgreSQL · filas",
-  },
-  {
-    sector: "Saúde",
-    title: "Portal de agendamento e ficha clínica",
-    body: "Agenda unificada de sete unidades, com confirmação por WhatsApp e prontuário enxuto.",
-    result: "Queda de 31% nas faltas em consultas agendadas",
-    stack: "Next.js · Prisma · AWS",
-  },
-  {
-    sector: "Indústria",
-    title: "Apontamento de produção no chão de fábrica",
-    body: "Coleta em tablet, offline-first, sincronizando com o ERP assim que a rede volta.",
-    result: "Fechamento de ordem de produção caiu de 2 dias para 4 horas",
-    stack: "PWA offline · Node · SQL Server",
-  },
-];
-
+/** Tecnologias em uso de verdade nos produtos da Kovex — nao listar o que nao usamos. */
 export const stack = [
+  "TypeScript",
+  "React",
+  "Next.js",
+  "React Native",
+  "Node.js",
+  "NestJS",
+  "PostgreSQL",
+  "Supabase",
+  "Stripe",
+  "Docker",
+];
+
+export const steps = [
   {
-    group: "Interface",
-    items: ["TypeScript", "React", "Next.js", "Tailwind CSS", "React Native"],
+    number: "01",
+    title: "Conversa",
+    body: "Você explica o problema e nós fazemos as perguntas difíceis. Às vezes a melhor resposta é não construir nada — e dizemos isso.",
   },
   {
-    group: "Servidor",
-    items: ["Node.js", "NestJS", "Python", "REST", "GraphQL"],
+    number: "02",
+    title: "Proposta por escrito",
+    body: "Escopo, prazo, valor e o que fica de fora, num documento. Nada começa sem estar claro para os dois lados.",
   },
   {
-    group: "Dados",
-    items: ["PostgreSQL", "SQL Server", "Redis", "Prisma", "BigQuery"],
+    number: "03",
+    title: "Construção em etapas",
+    body: "Entregas curtas, com uma versão para testar desde cedo. Você acompanha o sistema funcionando, não uma apresentação.",
   },
   {
-    group: "Infraestrutura",
-    items: ["AWS", "Vercel", "Docker", "Terraform", "GitHub Actions"],
-  },
-  {
-    group: "Qualidade",
-    items: ["Testes automatizados", "Observabilidade", "Code review", "LGPD desde o desenho"],
+    number: "04",
+    title: "Operação",
+    body: "Colocamos no ar e seguimos cuidando. Ou entregamos tudo documentado para o seu time assumir.",
   },
 ];
 
-export const differentiators = [
+export const principles = [
   {
-    title: "Time sênior, sem repasse",
-    body: "Quem participa da reunião é quem escreve o código. A entrega não é terceirizada para um subcontratado que você nunca vai conhecer.",
+    title: "Operamos o que construímos",
+    body: "Mantemos nosso próprio produto em produção. Sabemos o que dá trabalho depois do lançamento e projetamos pensando nisso.",
   },
   {
-    title: "Escopo fechado por etapa",
-    body: "Você contrata fatias com preço e prazo definidos. Se quiser parar ao fim de um ciclo, para — com tudo que foi feito até ali funcionando.",
+    title: "Quem conversa é quem desenvolve",
+    body: "Sem intermediário entre você e o código. A decisão técnica é explicada por quem vai executá-la.",
   },
   {
-    title: "Sem refém de fornecedor",
-    body: "Repositório, contas de nuvem e documentação nascem no nome da sua empresa. Trocar de parceiro vira uma decisão, não uma migração.",
-  },
-];
-
-export const faq = [
-  {
-    q: "Quanto custa um projeto com a Kovex?",
-    a: "Depende do escopo, mas trabalhamos com dois formatos: projeto de escopo fechado, orçado após o diagnóstico, e squad dedicado com valor mensal fixo. O diagnóstico inicial é gratuito e termina com uma faixa de investimento por escrito, antes de qualquer contrato.",
-  },
-  {
-    q: "Em quanto tempo eu vejo a primeira versão funcionando?",
-    a: "Entre 4 e 6 semanas na maior parte dos projetos. Colocamos um ambiente de homologação no ar já no primeiro ciclo de duas semanas, com uma fatia útil do sistema — normalmente o fluxo que mais consome tempo da sua equipe hoje.",
-  },
-  {
-    q: "O código-fonte fica comigo?",
-    a: "Sim, integralmente. O repositório e as contas de infraestrutura são abertos no nome da sua empresa desde o início, e o contrato prevê cessão total de direitos sobre o que for desenvolvido, junto com a documentação técnica.",
-  },
-  {
-    q: "Vocês trabalham por hora ou por escopo fechado?",
-    a: "Os dois. Escopo fechado funciona bem quando o problema já está claro; squad dedicado com horas mensais funciona melhor na evolução contínua de um produto. Recomendamos o formato no fim do diagnóstico, com a justificativa.",
-  },
-  {
-    q: "Depois da entrega, quem mantém o sistema?",
-    a: "Você escolhe. Existe contrato de sustentação com prazo de resposta acordado, monitoramento e backlog de evolução — ou fazemos a transferência completa para a sua equipe interna, com período de acompanhamento e treinamento.",
-  },
-  {
-    q: "Atendem empresas fora de São Paulo?",
-    a: "Sim. Operamos de forma remota para todo o Brasil, com rituais de projeto em vídeo e visitas presenciais quando entender a operação no local é indispensável — comum em indústria e logística.",
+    title: "O que é seu fica com você",
+    body: "Código, domínio e contas de infraestrutura ficam no nome da sua empresa desde o primeiro dia.",
   },
 ];
 
 export const contact = {
-  eyebrow: "Contato",
-  title: "Comece pelo diagnóstico. Ele é gratuito e termina em documento.",
-  lead: "Conte o que está travando hoje. Respondemos em até um dia útil com uma primeira leitura do problema e a proposta de agenda para a conversa técnica.",
-  assurances: [
-    "Resposta em até 1 dia útil",
-    "A primeira conversa é técnica, não comercial",
-    "Seus dados não são compartilhados com terceiros",
+  title: "Vamos conversar.",
+  lead: "Conte o que você precisa: um sistema novo, uma segunda opinião técnica ou alguém para cuidar de um software que já existe.",
+  supportNote: {
+    text: "Já usa o MakerDesk? O suporte do produto é pelo",
+    email: "suporte@makerdesk.com.br",
+  },
+  subjects: [
+    "Projeto sob medida",
+    "Consultoria",
+    "Sustentação de um sistema",
+    "Produtos Kovex",
+    "Outro assunto",
   ],
 };

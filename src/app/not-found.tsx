@@ -8,25 +8,30 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <section className="container-kx flex min-h-[70vh] flex-col justify-center py-32">
-      <p className="eyebrow">Erro 404</p>
-      <h1 className="mt-6 max-w-2xl text-[clamp(2rem,5vw,3.5rem)] leading-[1.05]">
-        Esta página não existe — ou mudou de endereço.
+    <section className="container-kx flex min-h-[80vh] flex-col justify-center pt-32 pb-24">
+      <p className="label tabular">
+        <span className="text-cobalt">404</span>
+        <span className="mx-2 text-faint" aria-hidden>
+          /
+        </span>
+        Página não encontrada
+      </p>
+      <h1 className="mt-6 max-w-2xl text-[clamp(2.2rem,5vw,3.8rem)] leading-[1.02] tracking-[-0.02em]">
+        Esta página não existe, ou mudou de endereço.
       </h1>
-      <p className="mt-6 max-w-lg leading-relaxed text-mute">
-        Se você chegou aqui por um link nosso, avise no contato: corrigimos e
-        respondemos o que você procurava.
+      <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
+        Se você chegou aqui por um link nosso, avise pelo contato que a gente corrige.
       </p>
       <div className="mt-10 flex flex-wrap gap-3">
         <Link
           href="/"
-          className="rounded-xs bg-cobalt-600 px-7 py-4 text-sm font-medium transition-colors hover:bg-cobalt-500"
+          className="rounded-sm bg-ink px-7 py-4 text-[0.95rem] font-medium text-paper transition-colors hover:bg-cobalt"
         >
           Voltar para o início
         </Link>
         <Link
           href="/#contato"
-          className="rounded-xs border border-paper/20 px-7 py-4 text-sm font-medium transition-colors hover:border-paper/50"
+          className="rounded-sm border border-rule-strong bg-surface px-7 py-4 text-[0.95rem] font-medium text-ink transition-colors hover:border-ink"
         >
           Falar com a Kovex
         </Link>

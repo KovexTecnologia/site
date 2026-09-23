@@ -1,80 +1,64 @@
 import { ContactForm } from "@/components/contact-form";
+import { Section } from "@/components/section";
 import { contact } from "@/content/site-content";
 import { siteConfig } from "@/lib/site-config";
 
 export function ContactSection() {
   return (
-    <section
+    <Section
       id="contato"
-      className="scroll-mt-24 border-b border-paper/10 bg-ink-900/40 py-24 lg:py-32"
+      number="04"
+      label="Contato"
+      title={contact.title}
+      lead={contact.lead}
+      className="pb-28 lg:pb-36"
     >
-      <div className="container-kx grid gap-14 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5">
-          <p className="eyebrow flex items-center gap-4">
-            <span>06</span>
-            <span className="h-px w-8 bg-paper/25" aria-hidden />
-            <span>{contact.eyebrow}</span>
-          </p>
-
-          <h2 className="mt-8 text-[clamp(1.9rem,3.6vw,3rem)] leading-[1.05]">
-            {contact.title}
-          </h2>
-
-          <p className="mt-6 max-w-md leading-relaxed text-mute">
-            {contact.lead}
-          </p>
-
-          <ul className="mt-10 space-y-4">
-            {contact.assurances.map((item) => (
-              <li key={item} className="flex items-start gap-3 text-sm text-paper/80">
-                <span
-                  aria-hidden
-                  className="mt-2 inline-block h-1 w-1 shrink-0 bg-cobalt-500"
-                />
-                {item}
-              </li>
-            ))}
-          </ul>
-
-          <dl className="mt-12 space-y-6 border-t border-paper/10 pt-10">
+      <div className="grid gap-12 lg:grid-cols-12 lg:gap-x-10">
+        <div className="order-2 lg:order-1 lg:col-span-3">
+          <dl className="space-y-8">
             <div>
-              <dt className="eyebrow">E-mail</dt>
+              <dt className="label text-xs">E-mail</dt>
               <dd className="mt-2">
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="text-lg underline underline-offset-4 decoration-paper/25 transition-colors hover:decoration-cobalt-400"
+                  className="text-ink underline decoration-rule-strong underline-offset-4 transition-colors hover:text-cobalt hover:decoration-cobalt"
                 >
                   {siteConfig.email}
                 </a>
               </dd>
             </div>
             <div>
-              <dt className="eyebrow">Telefone</dt>
+              <dt className="label text-xs">WhatsApp</dt>
               <dd className="mt-2">
                 <a
-                  href={`tel:${siteConfig.phoneE164}`}
-                  className="text-lg underline underline-offset-4 decoration-paper/25 transition-colors hover:decoration-cobalt-400"
+                  href={siteConfig.whatsappUrl}
+                  target="_blank"
+                  rel="noopener"
+                  className="text-ink underline decoration-rule-strong underline-offset-4 transition-colors hover:text-cobalt hover:decoration-cobalt"
                 >
-                  {siteConfig.phone}
+                  {siteConfig.phoneDisplay}
+                  <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
                 </a>
               </dd>
             </div>
-            <div>
-              <dt className="eyebrow">Escritório</dt>
-              <dd className="mt-2 leading-relaxed text-mute">
-                {siteConfig.address.street}
-                <br />
-                {siteConfig.address.district} · {siteConfig.address.city}/
-                {siteConfig.address.state}
-              </dd>
-            </div>
           </dl>
+
+          <p className="mt-10 border-t border-rule pt-6 text-sm leading-relaxed text-muted">
+            {contact.supportNote.text}{" "}
+            <a
+              href={`mailto:${contact.supportNote.email}`}
+              className="text-ink underline underline-offset-4 hover:text-cobalt"
+            >
+              {contact.supportNote.email}
+            </a>
+            .
+          </p>
         </div>
 
-        <div className="lg:col-span-7">
+        <div className="order-1 lg:order-2 lg:col-span-9">
           <ContactForm />
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

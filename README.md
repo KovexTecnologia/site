@@ -1,101 +1,104 @@
 # Kovex Tecnologia — site institucional
 
-Landing page em Next.js 15 (App Router, React 19, TypeScript, Tailwind CSS v4),
-pronta para deploy na Vercel. Renderização 100% estática, sem dependência de
-banco ou CMS.
+Site da Kovex Tecnologia LTDA (CNPJ 68.036.280/0001-21), a empresa responsável
+pelos produtos próprios (MakerDesk e os próximos) e pelos projetos sob medida.
+
+Next.js 15 (App Router, React 19, TypeScript, Tailwind CSS v4). Tudo estático,
+sem banco nem CMS. Deploy na Vercel.
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
-npm run build    # build de produção
+npm run dev        # http://localhost:3000
+npm run build
 npm run typecheck
 ```
+
+## Onde mexer
+
+| O que | Arquivo |
+|---|---|
+| Textos da home | `src/content/site-content.ts` |
+| Dados da empresa (CNPJ, endereço, e-mail, WhatsApp) | `src/lib/site-config.ts` |
+| Cores e tipografia | `src/app/globals.css` |
+| Política de privacidade | `src/app/privacidade/page.tsx` |
+
+Regra da copy: **nada de número, cliente ou prazo inventado.** O site anterior
+tinha métricas e cases de exemplo; o primeiro cliente que perguntasse por eles
+derrubava a confiança inteira.
+
+### Lançar um produto novo
+
+Adicione um item em `products`, dentro de `src/content/site-content.ts`, e a
+marca dele em `public/products/`. A seção de produtos, o rodapé, a política de
+privacidade e o JSON-LD leem dessa lista, então não é preciso mexer em mais nada.
 
 ## Estrutura
 
 ```
 src/
   app/
-    layout.tsx                  metadata global, fontes, header/footer, JSON-LD
-    page.tsx                    landing (hero → serviços → método → trabalhos → stack → FAQ → contato)
-    actions.ts                  server action do formulário (validação + envio)
-    politica-de-privacidade/    página LGPD
-    sitemap.ts robots.ts manifest.ts
-    icon.svg favicon.ico apple-icon.png
-  components/                   seções e UI
-  content/site-content.ts       TODA a copy da página
-  lib/site-config.ts            dados institucionais (nome, CNPJ, endereço, redes)
+    layout.tsx           metadados, fontes (Barlow + Inter), header, footer, JSON-LD
+    page.tsx             hero → produtos → serviços → como trabalhamos → contato
+    actions.ts           server action do formulário (Zod + Resend)
+    privacidade/         política de privacidade (LGPD)
+    sitemap.ts robots.ts manifest.ts not-found.tsx
+  components/            uma seção por arquivo
+  content/site-content.ts
+  lib/site-config.ts
 public/
-    og-kovex.png                imagem de compartilhamento 1200×630
-    brand/                      marca em SVG/PNG (fonte editável em ../brand)
+  brand/                 marca em SVG/PNG (fonte editável em ../brand)
+  products/              marca de cada produto
+  og-kovex.png           imagem de compartilhamento 1200×630
 ```
 
-## Antes de publicar — preencher dados reais
+## Domínios
 
-1. **`src/lib/site-config.ts`** — CNPJ, endereço, CEP, telefone, WhatsApp,
-   coordenadas e URLs de LinkedIn/Instagram/GitHub. Tudo isso alimenta rodapé,
-   página de privacidade e o JSON-LD lido pelo Google.
-2. **`src/content/site-content.ts`** — os números de `stats` e os casos de
-   `works` são exemplos para dar forma à página. Troque por dados auditáveis ou
-   remova a seção; métrica inventada em site institucional cobra o preço na
-   primeira reunião.
-3. **`src/app/politica-de-privacidade/page.tsx`** — revisar prazos de retenção e
-   bases legais com o jurídico; ajustar a data de última atualização.
-
-## Variáveis de ambiente (Vercel → Settings → Environment Variables)
-
-| Variável | Obrigatória | Para quê |
-|---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | sim | URL canônica de produção, sem barra final. Usada em canonical, sitemap, Open Graph e JSON-LD. |
-| `RESEND_API_KEY` | não | Envio do formulário por e-mail via [Resend](https://resend.com). Sem ela, o lead é gravado no log da função (Vercel → Logs). |
-| `CONTACT_TO_EMAIL` | não | Caixa que recebe os contatos. Padrão: `contato@kovextech.com.br`. |
-| `CONTACT_FROM_EMAIL` | não | Remetente. Precisa ser de domínio verificado no Resend. |
-| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | não | Conteúdo da meta tag do Google Search Console. |
-
-Modelo em `.env.example`. Para rodar local: `cp .env.example .env.local`.
+- **`kovex.com.br`** é o domínio principal (canonical, sitemap, JSON-LD).
+- **`kovextecnologia.com.br`** redireciona para ele com 308. O redirect está no
+  `next.config.ts`, então basta o domínio estar ligado ao projeto na Vercel.
+- `/politica-de-privacidade` (endereço do site anterior) redireciona para `/privacidade`.
 
 ## Deploy na Vercel
 
-1. `git init && git add . && git commit -m "site institucional"` e suba para o
-   GitHub.
-2. Na Vercel: **Add New → Project → importar o repositório**. O framework é
-   detectado sozinho (Next.js), root directory na raiz, sem build command
-   customizado.
-3. Cadastre `NEXT_PUBLIC_SITE_URL=https://kovextech.com.br` em Production.
-4. **Settings → Domains** → adicionar `kovextech.com.br` e `www.kovextech.com.br`
-   (a Vercel já redireciona o `www` para o apex).
-5. Redeploy após configurar as variáveis — `metadataBase`, sitemap e JSON-LD são
-   resolvidos em tempo de build.
+1. Importe o repositório `KovexTecnologia/site`. O Next.js é detectado sozinho.
+2. Em **Settings → Environment Variables**, cadastre as variáveis abaixo em Production.
+3. Em **Settings → Domains**, adicione `kovex.com.br`, `www.kovex.com.br` e
+   `kovextecnologia.com.br`. O mais simples é apontar os nameservers de
+   `kovex.com.br` no Registro.br para `ns1.vercel-dns.com` / `ns2.vercel-dns.com`,
+   como já está feito no `kovextecnologia.com.br`.
+4. Refaça o deploy depois de mexer em variável: canonical, sitemap e JSON-LD são
+   resolvidos no build.
 
-## SEO já configurado
+| Variável | Obrigatória | Para quê |
+|---|---|---|
+| `NEXT_PUBLIC_SITE_URL` | sim | `https://kovex.com.br`, sem barra no final |
+| `RESEND_API_KEY` | não | Envio do formulário por e-mail. Sem ela, a mensagem vai para o log da função (Vercel → Logs) e nada se perde |
+| `CONTACT_TO_EMAIL` | não | Quem recebe. Padrão: `contato@kovex.com.br` |
+| `CONTACT_FROM_EMAIL` | não | Remetente. Precisa ser de domínio verificado no Resend |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | não | Meta tag do Google Search Console |
 
-- `metadataBase`, title template, description, keywords e `canonical` por página.
-- Open Graph e Twitter Card com imagem 1200×630 do kit de marca (`public/og-kovex.png`)
-  e texto alternativo.
-- `robots.txt` dinâmico: bloqueia deploys de *preview* da Vercel e aponta o sitemap.
-- `sitemap.xml` gerado pelo App Router.
-- Dados estruturados (schema.org): `Organization`, `ProfessionalService` com
-  `OfferCatalog` dos serviços, `WebSite`, `FAQPage` na home e `BreadcrumbList` na
-  política de privacidade.
-- `manifest.webmanifest` + favicons, ícone maskable e apple-touch-icon.
-- HTML semântico, um único `<h1>`, hierarquia de headings, `lang="pt-BR"`,
-  skip link, foco visível e `prefers-reduced-motion`.
-- Cabeçalhos de segurança (HSTS, nosniff, frame-options, referrer-policy) em
-  `next.config.ts`.
+## E-mail `contato@kovex.com.br`
 
-### Depois do primeiro deploy
+Hoje o `kovex.com.br` está configurado para **não receber e-mail** (MX nulo `.`
+e SPF `v=spf1 -all`). Para o endereço do site funcionar:
 
-1. Google Search Console → adicionar a propriedade do domínio, validar e enviar
-   `https://kovextech.com.br/sitemap.xml`.
-2. Rodar o [Rich Results Test](https://search.google.com/test/rich-results) na home
-   para conferir `Organization` e `FAQPage`.
-3. Criar o perfil no Google Business (se houver endereço de atendimento) — é o que
-   liga o `ProfessionalService` ao mapa.
+1. **Receber:** crie uma conta grátis no [ImprovMX](https://improvmx.com)
+   redirecionando `contato@kovex.com.br` para o Gmail da empresa. No DNS do
+   domínio, troque o MX nulo por `mx1.improvmx.com` (prioridade 10) e
+   `mx2.improvmx.com` (prioridade 20), e o SPF por
+   `v=spf1 include:spf.improvmx.com ~all`. Para também *responder* como
+   `contato@`, o Zoho Mail tem plano gratuito com caixa de verdade.
+2. **Formulário:** no [Resend](https://resend.com), adicione o domínio
+   `kovex.com.br` e crie no DNS os registros que ele mostrar (DKIM e o
+   subdomínio `send`). Depois gere a `RESEND_API_KEY`.
 
-## Formulário de contato
+## SEO
 
-Server action em `src/app/actions.ts`: validação com Zod, campo *honeypot*
-anti-robô, consentimento LGPD obrigatório e mensagens de erro por campo. Com
-`RESEND_API_KEY` configurada, envia o lead por e-mail com `reply-to` do
-remetente; sem ela, registra no log do servidor para nada se perder enquanto o
-e-mail não está configurado.
+- Metadados, canonical, Open Graph e Twitter Card em `layout.tsx`.
+- JSON-LD: `Organization`, com razão social, CNPJ, endereço, produtos (como
+  `brand`) e serviços (como `makesOffer`), e `WebSite`. Não tem `sameAs` porque
+  ainda não existem perfis em redes sociais. Adicione quando houver conteúdo publicado.
+- `robots.txt` bloqueia os deploys de preview da Vercel.
+- Depois do primeiro deploy: cadastre o domínio no Google Search Console, envie
+  `https://kovex.com.br/sitemap.xml` e rode o
+  [Rich Results Test](https://search.google.com/test/rich-results).
