@@ -51,7 +51,7 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  --spacing-secao: clamp(6rem, 12vw, 10rem);
+  --spacing-secao: clamp(5rem, 9vw, 7rem);
   --spacing-margem: clamp(1rem, 5vw, 4rem);
   --spacing-cabecalho: 5rem;
 
@@ -141,14 +141,15 @@
     text-transform: uppercase;
   }
 
-  /* marcador no ângulo do chevron do K (4:3), usado em rótulos e listas */
+  /* marcador no ângulo do chevron do K (4:3), usado em rótulos e listas. É o
+     chevron espelhado: apontando para a esquerda, no início da linha, lia como "voltar" */
   .chevron {
     display: inline-block;
     flex-shrink: 0;
     width: 0.5rem;
     height: 0.625rem;
     background: currentColor;
-    clip-path: polygon(40% 0, 100% 0, 53.5% 50%, 100% 100%, 40% 100%, 0 50%);
+    clip-path: polygon(0 0, 60% 0, 100% 50%, 60% 100%, 0 100%, 46.5% 50%);
   }
 
   /* botão principal: o único botão cheio do site */

@@ -1,10 +1,10 @@
 import { LuzCursor } from '@/components/LuzCursor'
 import { SERVICOS } from '@/lib/conteudo'
 
-/** Os quatro serviços numa lista com fios, sem cartões nem ícones. */
+/** Os quatro serviços numa lista com fios, sem cartões nem ícones, numa faixa de superfície. */
 export function Servicos() {
   return (
-    <section id="servicos" className="py-secao">
+    <section id="servicos" className="bg-superficie py-secao">
       <div className="moldura">
         <h2 className="max-w-[16ch] font-display text-titulo font-bold">Do sistema ao app, num lugar só.</h2>
 

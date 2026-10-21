@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { BotaoWhatsApp } from '@/components/BotaoWhatsApp'
 import { VidroK } from '@/components/VidroK'
+import { DESTAQUES } from '@/lib/conteudo'
 import { COM_MOVIMENTO, EASE, gsap, SplitText, useGSAP } from '@/lib/gsap'
 import { RESPONSE_TIME } from '@/lib/site'
 
@@ -71,7 +72,7 @@ export function Abertura() {
       ref={secao}
       className="relative flex min-h-dvh items-center overflow-hidden pt-cabecalho pb-16 lg:pb-12"
     >
-      <div className="moldura grid items-center gap-12 pt-8 lg:grid-cols-12 lg:gap-6 lg:pt-0">
+      <div className="moldura grid items-center gap-12 pt-8 lg:grid-cols-12 lg:gap-6 lg:pt-6">
         <div className="relative z-(--z-conteudo) lg:col-span-8">
           <h1 data-entrada-linhas className="max-w-[15ch] font-display text-gigante font-bold">
             Sua ideia vira produto, camada por camada.
@@ -89,12 +90,22 @@ export function Abertura() {
           <p className="mt-6 text-apoio">Primeira conversa gratuita, sem compromisso. {RESPONSE_TIME}</p>
         </div>
 
-        <div data-entrada-vidro className="relative z-(--z-vidro) lg:col-span-4">
+        {/* no celular o vidro vai para depois da faixa, para os fatos ficarem perto do botão */}
+        <div data-entrada-vidro className="relative z-(--z-vidro) order-last lg:order-0 lg:col-span-4">
           <VidroK
             variante="solta"
-            className="mx-auto w-[min(56vw,15rem)] sm:w-[min(40vw,18rem)] lg:mr-8 lg:ml-auto lg:w-[min(24vw,20rem)]"
+            className="mx-auto w-[min(44vw,12rem)] sm:w-[min(40vw,18rem)] lg:mr-8 lg:ml-auto lg:w-[min(24vw,20rem)]"
           />
         </div>
+
+        <ul className="grid gap-4 border-t border-fio pt-8 lg:col-span-12 lg:mt-8 lg:grid-cols-3 lg:gap-6">
+          {DESTAQUES.map((destaque) => (
+            <li key={destaque} className="flex items-center gap-4 font-semibold">
+              <span className="h-1 w-6 shrink-0 rounded-k bg-azul" aria-hidden="true" />
+              {destaque}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

@@ -40,7 +40,7 @@ export function ChamadaFinal() {
   )
 
   return (
-    <section id="contato" ref={secao} className="overflow-hidden border-t border-fio py-secao">
+    <section id="contato" ref={secao} className="overflow-hidden py-secao">
       <div className="moldura grid items-center gap-16 lg:grid-cols-12 lg:gap-6">
         <div className="lg:col-span-7">
           <h2 className="max-w-[20ch] font-display text-titulo font-bold">

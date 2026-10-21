@@ -45,7 +45,7 @@ export function Processo() {
         // e rolar para cima desfaz uma.
         const porCamada = 0.3 // fração da altura da tela
 
-        gsap.set(etapas, { opacity: 0.35 })
+        gsap.set(etapas, { opacity: 0.5 })
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: area,

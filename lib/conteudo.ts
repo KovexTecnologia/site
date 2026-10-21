@@ -3,6 +3,9 @@
  * slides A1 a A3). Mudança de texto passa por aprovação antes de entrar aqui.
  */
 
+/** Os três fatos da faixa embaixo da abertura (aprovados em 2026-10-21). */
+export const DESTAQUES = ['Primeira versão em 4 a 6 semanas', 'Valor fechado', 'Código no seu nome'] as const
+
 /**
  * Exemplos de ideias na seção "Para quem". São tipos de projeto, não clientes:
  * sem aspas, sem nomes, para não parecerem depoimentos.
@@ -57,15 +60,19 @@ export const ETAPAS = [
   },
 ] as const
 
+/**
+ * Na ordem do título da seção: da conversa ao código. "Ter um produto no ar" saiu
+ * daqui porque a seção MakerDesk, logo antes, já diz isso (texto novo, aguardando ok).
+ */
 export const COMPROMISSOS = [
-  {
-    nome: 'A gente sabe o que é ter um produto no ar.',
-    texto:
-      'A Kovex mantém o próprio sistema funcionando e atende quem usa. Por isso pensa no seu negócio, não só no código.',
-  },
   {
     nome: 'Você fala com quem constrói.',
     texto: 'Sem vendedor no meio. Quem entende a sua ideia é quem escreve o código.',
+  },
+  {
+    nome: 'Valor fechado.',
+    texto:
+      'O preço da primeira versão vem na proposta, por escrito, antes de começar. O pagamento é dividido pelos marcos de entrega.',
   },
   {
     nome: 'O código é seu.',
