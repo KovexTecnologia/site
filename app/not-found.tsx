@@ -18,7 +18,7 @@ export default function NaoEncontrada() {
             Esta camada ainda não foi construída.
           </h1>
           <p className="mt-8 max-w-texto text-abertura text-apoio">
-            O endereço não existe ou mudou. Volte ao início ou conte sua ideia direto no WhatsApp.
+            O endereço não existe ou mudou. Volte ao início ou fale com a gente no WhatsApp.
           </p>
           <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-6">
             <BotaoWhatsApp />

@@ -38,7 +38,9 @@ export function Cabecalho() {
       menu.current.querySelector('summary')?.focus()
     }
 
-    // marca no menu a seção que está na tela
+    // marca no menu a seção que está na tela e mantém o endereço igual a ela: sem
+    // isso, o "#como-funciona" de um clique ficava no endereço depois de voltar ao
+    // topo, e atualizar a página pulava de novo para lá. Na abertura o "#" sai.
     const links = [...el.querySelectorAll<HTMLAnchorElement>('nav[data-principal] a[href^="#"]')]
     const observador = new IntersectionObserver(
       (entradas) => {
@@ -48,6 +50,11 @@ export function Cabecalho() {
           for (const link of links) {
             if (link.getAttribute('href') === id) link.setAttribute('aria-current', 'true')
             else link.removeAttribute('aria-current')
+          }
+          const hash = id === '#topo' ? '' : id
+          if (window.location.hash !== hash) {
+            const endereco = hash || window.location.pathname + window.location.search
+            window.history.replaceState(window.history.state, '', endereco)
           }
         }
       },

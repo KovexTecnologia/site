@@ -1,6 +1,6 @@
-import { CTA_LABEL, CTA_LABEL_SHORT, WHATSAPP_URL } from '@/lib/site'
+import { CTA_LABEL, WHATSAPP_URL } from '@/lib/site'
 
-/** A ação principal do site: abre o WhatsApp com a mensagem pronta. */
+/** A ação principal do site: abre o WhatsApp com a mensagem pronta. `compacto` só muda o tamanho. */
 export function BotaoWhatsApp({
   compacto = false,
   className = '',
@@ -19,7 +19,7 @@ export function BotaoWhatsApp({
       onClick={onClick}
     >
       <IconeWhatsApp />
-      <span>{compacto ? CTA_LABEL_SHORT : CTA_LABEL}</span>
+      <span>{CTA_LABEL}</span>
       <span className="sr-only"> (abre o WhatsApp)</span>
     </a>
   )

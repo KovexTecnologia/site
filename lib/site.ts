@@ -60,9 +60,12 @@ export const MAKERDESK_PLAY_STORE_URL: string | null = null
 /** Prazo confirmado pelo Paulo: a resposta sai em menos de 24 horas. */
 export const RESPONSE_TIME = 'Resposta em até 24 horas.'
 
-/** O botão principal tem sempre o mesmo texto; o cabeçalho usa a versão curta por espaço. */
-export const CTA_LABEL = 'Contar minha ideia no WhatsApp'
-export const CTA_LABEL_SHORT = 'Contar minha ideia'
+/**
+ * O botão principal tem o mesmo texto em todo lugar, cabeçalho incluído. "Conversar"
+ * no lugar de "Contar", que soava como entregar a ideia (decisão de 2026-10-21).
+ * O ícone já diz que é WhatsApp.
+ */
+export const CTA_LABEL = 'Conversar sobre minha ideia'
 
 export const MENU = [
   { href: '#servicos', label: 'Serviços' },

@@ -5,9 +5,10 @@ import { BotaoWhatsApp } from '@/components/BotaoWhatsApp'
 
 /**
  * No celular, a ação principal fica ao alcance do polegar: uma barra fixa embaixo
- * que aparece quando o botão da abertura sai da tela e some quando a chamada final
- * ou o rodapé entram (ali o botão já está à vista). Sem JavaScript ela não
- * aparece, e os botões da própria página continuam lá.
+ * que aparece quando o botão da abertura sai da tela. Ela some sempre que outro
+ * botão da página, a chamada final ou o rodapé está à vista, para nunca haver dois
+ * botões iguais na tela. Sem JavaScript ela não aparece, e os botões da própria
+ * página continuam lá.
  */
 export function BarraWhatsApp() {
   const barra = useRef<HTMLDivElement>(null)
@@ -15,15 +16,17 @@ export function BarraWhatsApp() {
   useEffect(() => {
     const el = barra.current
     const botaoAbertura = document.querySelector('#topo .botao')
-    const finais = [document.getElementById('contato'), document.querySelector('footer')].filter(
-      (f): f is HTMLElement => f !== null,
-    )
+    const escondem = [
+      ...document.querySelectorAll('main .botao'),
+      document.getElementById('contato'),
+      document.querySelector('footer'),
+    ].filter((f): f is Element => f !== null)
     if (!el || !botaoAbertura) return
 
     let passouAbertura = false
-    const finaisNaTela = new Set<Element>()
+    const naTela = new Set<Element>()
     const atualizar = () => {
-      el.dataset.visivel = String(passouAbertura && finaisNaTela.size === 0)
+      el.dataset.visivel = String(passouAbertura && naTela.size === 0)
     }
 
     const observarAbertura = new IntersectionObserver(([entrada]) => {
@@ -31,19 +34,19 @@ export function BarraWhatsApp() {
       passouAbertura = !entrada.isIntersecting && entrada.boundingClientRect.top < 0
       atualizar()
     })
-    const observarFinais = new IntersectionObserver((entradas) => {
+    const observarEscondem = new IntersectionObserver((entradas) => {
       for (const entrada of entradas) {
-        if (entrada.isIntersecting) finaisNaTela.add(entrada.target)
-        else finaisNaTela.delete(entrada.target)
+        if (entrada.isIntersecting) naTela.add(entrada.target)
+        else naTela.delete(entrada.target)
       }
       atualizar()
     })
 
     observarAbertura.observe(botaoAbertura)
-    finais.forEach((f) => observarFinais.observe(f))
+    escondem.forEach((f) => observarEscondem.observe(f))
     return () => {
       observarAbertura.disconnect()
-      observarFinais.disconnect()
+      observarEscondem.disconnect()
     }
   }, [])
 

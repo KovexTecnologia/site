@@ -98,7 +98,7 @@ export function Abertura() {
           />
         </div>
 
-        <ul className="grid gap-4 border-t border-fio pt-8 lg:col-span-12 lg:mt-8 lg:grid-cols-3 lg:gap-6">
+        <ul className="grid gap-4 border-t border-fio pt-8 lg:col-span-12 lg:mt-8 lg:flex lg:flex-wrap lg:gap-x-16 lg:gap-y-4">
           {DESTAQUES.map((destaque) => (
             <li key={destaque} className="flex items-center gap-4 font-semibold">
               <span className="h-1 w-6 shrink-0 rounded-k bg-azul" aria-hidden="true" />
