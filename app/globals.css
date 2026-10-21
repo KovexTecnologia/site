@@ -386,6 +386,20 @@
   display: none;
 }
 
+/* menu do celular aberto: o cabeçalho fica sólido e a página atrás não rola. Só
+   abaixo de lg, para um menu que ficou aberto antes de girar a tela não travar
+   a rolagem no computador */
+.cabecalho:has(.menu-movel[open]) {
+  background: var(--color-navy);
+  border-bottom-color: var(--color-fio);
+}
+
+@media (width < 64rem) {
+  :root:has(.menu-movel[open]) {
+    overflow: hidden;
+  }
+}
+
 /* indicador "2 de 4" do processo */
 .marca-etapa {
   background: var(--color-fio);
@@ -418,6 +432,11 @@
   transition:
     transform 400ms var(--ease-saida),
     visibility 0s linear 0s;
+}
+
+/* com o menu aberto a barra sai: o menu já tem o botão */
+:root:has(.menu-movel[open]) .barra-whatsapp {
+  visibility: hidden;
 }
 
 /* ------------------------------------------------------------------ */

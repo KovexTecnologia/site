@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 import type { ReactNode } from 'react'
+import { CabecalhoSimples } from '@/components/CabecalhoSimples'
 import { BreadcrumbJsonLd } from '@/components/JsonLd'
 import { Rodape } from '@/components/Rodape'
 import { COMPANY_ADDRESS, COMPANY_CNPJ, COMPANY_NAME, CONTACT_EMAIL, MAKERDESK_URL } from '@/lib/site'
@@ -42,24 +41,7 @@ export default function Privacidade() {
 
   return (
     <>
-      <header className="border-b border-fio">
-        <div className="moldura flex h-cabecalho items-center justify-between gap-6">
-          <Link href="/" className="flex min-h-11 items-center" aria-label="Kovex, voltar ao início">
-            <Image
-              src="/brand/kovex-lockup-horizontal-dark.svg"
-              alt=""
-              width={113}
-              height={28}
-              priority
-              unoptimized
-              className="h-7 w-auto"
-            />
-          </Link>
-          <Link href="/" className="link">
-            Voltar ao início
-          </Link>
-        </div>
-      </header>
+      <CabecalhoSimples />
 
       <main id="conteudo" className="py-secao">
         <article className="moldura">

@@ -114,9 +114,10 @@ export function Cabecalho() {
             <span className="menu-abrir">Menu</span>
             <span className="menu-fechar">Fechar</span>
           </summary>
+          {/* cobre a tela até embaixo; a página atrás não rola (`:has` no globals.css) */}
           <nav
             aria-label="Principal"
-            className="absolute inset-x-0 top-full border-b border-fio bg-navy pb-8"
+            className="absolute inset-x-0 top-full h-[calc(100dvh-var(--spacing-cabecalho))] overflow-y-auto overscroll-contain bg-navy pb-8"
           >
             <ul className="moldura flex flex-col">
               {MENU.map((item) => (
