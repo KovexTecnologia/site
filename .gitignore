@@ -1,11 +1,33 @@
-node_modules
-.next
-out
-build
+# dependências
+/node_modules
+
+# next.js
+/.next/
+/out/
+/build
+
+# sistema
 .DS_Store
 *.pem
-.env
-.env*.local
+
+# debug
+npm-debug.log*
+.pnpm-debug.log*
+
+# env
+.env*
+!.env.example
+
+# vercel
 .vercel
-next-env.d.ts
+
+# typescript
 *.tsbuildinfo
+next-env.d.ts
+
+# Material de processo (direção criativa, decisões, referências de outros sites):
+# fica só na máquina, porque o repositório é público. Entram só a fonte da imagem
+# de compartilhamento (docs/og) e o logo que ela usa (docs/marca).
+/docs/*
+!/docs/og/
+!/docs/marca/
