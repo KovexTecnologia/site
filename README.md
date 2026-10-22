@@ -24,10 +24,26 @@ pnpm typecheck
 | Uma seção por arquivo | `components/` |
 | Política de privacidade | `app/privacidade/page.tsx` |
 | Imagem de compartilhamento | `docs/og/og.html` (gera `app/opengraph-image.png` e `app/twitter-image.png`) |
+| Capturas do MakerDesk (painel e app) | `public/products/makerdesk-relatorios.png` e `makerdesk-app.png` |
 
 Regra da copy, herdada da versão anterior: **nada de número, cliente ou prazo inventado.** Os únicos
 números do site (primeira versão em 4 a 6 semanas, 30 dias de correções, resposta em até 24 horas) são
-compromissos confirmados pela Kovex.
+compromissos confirmados pela Kovex. Os números que aparecem dentro das capturas do MakerDesk são de uma
+oficina de demonstração, não afirmação da Kovex.
+
+### Capturas do MakerDesk
+
+Saem da conta demo do MakerDesk no Supabase de desenvolvimento (ver "Conta demo" no `PROJECT.md` do
+MakerDesk), com dados fictícios. Para trocar, mantenha o nome e o tamanho de cada arquivo:
+
+- **Painel:** a tela de Relatórios do web em 1376×860 a 2x (2752×1720, 16:10). Nessa largura os cards
+  não quebram linha, e o canto que o celular cobre no computador é só a barra lateral. Mais estreito,
+  os textos dos cards quebram e o menu é cortado.
+- **App:** a tela Início do app em 390×845 a 3x (1170×2535, 9:19,5). Tirada pelo Expo Web, sem o aviso
+  de desenvolvimento e com o mouse fora dos gráficos (senão o tooltip sai no print).
+
+Com o `pnpm dev` rodando, apague `.next/dev/cache/images` depois de trocar uma captura: o servidor
+guarda a versão otimizada pela URL e continua mostrando a antiga.
 
 ### Quando o app do MakerDesk sair nas lojas
 
@@ -47,18 +63,26 @@ JavaScript.
 ## Domínios
 
 - **`kovex.com.br`** é o domínio principal (canonical, sitemap, JSON-LD).
-- **`kovextecnologia.com.br`** redireciona para ele com 308. O redirect está no `next.config.ts`,
-  então basta o domínio estar ligado ao projeto na Vercel.
+- **`www.kovex.com.br`** redireciona para ele com 308, configurado no próprio domínio na Vercel.
+- **`kovextecnologia.com.br`** e **`www.kovextecnologia.com.br`** redirecionam para ele com 308. O
+  redirect está no `next.config.ts`, então basta o domínio estar ligado ao projeto na Vercel.
 - `/politica-de-privacidade` (endereço do primeiro site) redireciona para `/privacidade`.
+
+Os dois domínios usam os nameservers da Vercel (`ns1`/`ns2.vercel-dns.com`): o DNS se edita no time
+Kovex da Vercel, em **Domains**.
 
 ## Deploy na Vercel
 
-1. Importe o repositório `KovexTecnologia/site`. O Next.js e o pnpm são detectados sozinhos.
-2. Em **Settings → Domains**, adicione `kovex.com.br`, `www.kovex.com.br` e `kovextecnologia.com.br`.
-3. Em **Analytics**, ative o Web Analytics (o site já carrega o script; sem cookies).
-4. Se o projeto ainda tiver as variáveis da versão anterior (`RESEND_API_KEY`, `CONTACT_*`,
-   `NEXT_PUBLIC_SITE_URL`), elas podem ser apagadas: o site novo não usa formulário e o endereço
-   canônico está fixo em `lib/site.ts`.
+Publicado desde 21/10/2026 no projeto **`kovex-site`** do time **Kovex** (`kovextec`), ligado ao
+repositório `KovexTecnologia/site`:
+
+- **Push na `main` publica em produção.** Outras branches viram deploy de preview, que o `robots.txt`
+  bloqueia.
+- **Domínios do projeto:** os quatro acima, todos verificados e com HTTPS.
+- **Web Analytics** ligado (o site já carrega o script; sem cookies). Speed Insights desligado: o site
+  não carrega o script dele.
+- Para usar o CLI na pasta, `vercel link --project kovex-site --scope kovextec`. Ele cria a pasta
+  `.vercel/`, que o git ignora.
 
 | Variável | Obrigatória | Para quê |
 |---|---|---|
@@ -70,6 +94,10 @@ Desde outubro de 2026 o `kovex.com.br` recebe e-mail pela Hostinger (MX `mx1`/`m
 SPF `include:_spf.mail.hostinger.com`). O endereço aparece no site como contato secundário e na
 política de privacidade.
 
+Esses registros ficam no DNS da Vercel, junto com o DKIM (`hostingermail-a`/`b`/`c._domainkey`) e o
+DMARC (`_dmarc`). Ao mexer no DNS do domínio, não apague nenhum deles: sem eles o e-mail para de chegar
+ou passa a cair no spam.
+
 ## SEO
 
 - Metadados, canonical, Open Graph e Twitter Card em `app/layout.tsx`.
@@ -77,9 +105,11 @@ política de privacidade.
   abertura, o MakerDesk como `brand` e os serviços como `makesOffer`; `WebSite`; e `BreadcrumbList`
   na política de privacidade. Não tem `sameAs` porque ainda não existem perfis em redes sociais.
 - `robots.txt` bloqueia os deploys de preview da Vercel.
-- Depois do primeiro deploy: cadastre o domínio no Google Search Console, envie
-  `https://kovex.com.br/sitemap.xml` e rode o
-  [Rich Results Test](https://search.google.com/test/rich-results).
+- Pendente desde o primeiro deploy (21/10/2026): cadastrar o domínio no Google Search Console, enviar
+  `https://kovex.com.br/sitemap.xml` e rodar o
+  [Rich Results Test](https://search.google.com/test/rich-results). Se o Google pedir verificação por
+  registro TXT, ele entra no DNS da Vercel; pela meta tag, é a variável
+  `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` do projeto.
 
 ## Histórico
 
@@ -89,4 +119,5 @@ política de privacidade.
   versão anterior vieram o endereço e a data de abertura conferidos no CNPJ, o JSON-LD completo, a
   estrutura da política de privacidade, os redirects de domínio, o bloqueio de preview no robots, a
   marca do MakerDesk e o favicon. A pasta `brand/` é o kit de marca, e `backup/` guarda as
-  explorações de logo.
+  explorações de logo. Em 21/10/2026 as capturas reais do MakerDesk entraram no lugar dos espaços
+  reservados, e o site foi publicado no projeto `kovex-site` da Vercel.
