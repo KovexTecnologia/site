@@ -21,8 +21,8 @@ export type ConteudoServico = {
   abertura: string
   paraQuem: { titulo: string; exemplos: readonly string[]; texto: readonly string[] }
   etapas: { titulo: string; texto: string; nota: string }
-  /** o MakerDesk como prova do serviço */
-  prova: { titulo: string; texto: readonly string[]; nota: string }
+  /** o MakerDesk como prova do serviço, com a tela do app ou a do painel */
+  prova: { tela: 'app' | 'painel'; titulo: string; texto: readonly string[]; nota: string }
   preco: { titulo: string; texto: string; fatores: readonly string[]; fecho: string }
   condicoes: readonly { nome: string; texto: string }[]
   perguntas: { titulo: string; itens: readonly { pergunta: string; resposta: string }[] }
@@ -63,6 +63,7 @@ export const APLICATIVOS: ConteudoServico = {
   },
 
   prova: {
+    tela: 'app',
     titulo: 'Um app que a gente construiu e mantém.',
     texto: [
       'O MakerDesk, sistema de gestão da Kovex para negócios de impressão 3D, tem app para iPhone e Android. É um código só para os dois aparelhos, ligado ao mesmo sistema da versão para computador: o que a oficina registra no celular aparece também no computador.',
@@ -132,6 +133,124 @@ export const APLICATIVOS: ConteudoServico = {
         pergunta: 'E depois que o app estiver nas lojas?',
         resposta:
           'Correções de defeitos estão incluídas por 30 dias. O iPhone e o Android mudam todo ano, e de tempos em tempos as lojas pedem uma atualização do app. Essas atualizações e as novas funções são planejadas e orçadas no mesmo modelo.',
+      },
+      {
+        pergunta: 'Minha ideia fica protegida?',
+        resposta:
+          'Sim. Sempre que você pedir, assinamos um acordo de confidencialidade antes de entrar nos detalhes.',
+      },
+    ],
+  },
+}
+
+/**
+ * Decisões de 2026-10-22: termo "sistemas web sob medida"; exemplos de sair da planilha, portal
+ * do cliente e painéis (plataforma por assinatura ficou de fora); preço como o de aplicativos.
+ */
+export const SISTEMAS: ConteudoServico = {
+  caminho: '/desenvolvimento-de-sistemas',
+  title: 'Desenvolvimento de sistemas web sob medida · Kovex',
+  description:
+    'Sistema web sob medida para organizar pedidos, estoque, agenda e financeiro, com acesso para a equipe e os clientes. Primeira versão em 4 a 6 semanas.',
+  whatsapp:
+    'Olá, Kovex! Vim pela página de sistemas. Tenho uma ideia de sistema e quero entender por onde começar.',
+  trilha: 'Sistemas web',
+  rotulo: 'Desenvolvimento de sistemas web sob medida',
+  frase: 'Um sistema do jeito que o seu negócio funciona.',
+  abertura:
+    'A Kovex desenvolve sistemas sob medida para empreendedores que cansaram da planilha. Você acessa pelo navegador, no computador ou no celular, e a primeira versão começa pelo que mais pesa no seu dia a dia.',
+
+  paraQuem: {
+    titulo: 'Do caderno e da planilha para um lugar só.',
+    exemplos: [
+      'Pedidos, estoque, agenda e financeiro num sistema só.',
+      'Cada pessoa da equipe com o próprio acesso, vendo só o que precisa.',
+      'Uma área para o cliente acompanhar o pedido e baixar documentos sem precisar perguntar.',
+      'Painéis que mostram como o negócio está, sem montar relatório à mão todo mês.',
+    ],
+    texto: [
+      'Sistema pronto resolve o caso comum. Quando o seu negócio tem um jeito próprio de trabalhar, o sob medida segue esse jeito, em vez de você se adaptar a ele.',
+      'Funciona no navegador, sem instalar nada. Se a equipe precisar de um app para celular, ele pode vir junto, ligado ao mesmo sistema.',
+    ],
+  },
+
+  etapas: {
+    titulo: 'Como a gente desenvolve o seu sistema.',
+    texto: 'O mesmo caminho de todo projeto da Kovex: primeiro o essencial, depois camada por camada.',
+    nota: 'Num sistema, "no ar" quer dizer funcionando no seu endereço, com você e a equipe usando de verdade. Se os dados estão numa planilha, eles podem entrar no sistema já na primeira versão.',
+  },
+
+  prova: {
+    tela: 'painel',
+    titulo: 'Um sistema que a gente construiu e opera todo dia.',
+    texto: [
+      'O MakerDesk é o sistema de gestão da Kovex para negócios de impressão 3D. Ele calcula o custo de cada peça, controla os materiais, transforma orçamentos em pedidos e mostra em relatórios como está o negócio.',
+      'Cada pessoa da equipe entra com o próprio login e vê o que o papel dela permite. Funciona no navegador e tem app para celular, ligado ao mesmo sistema.',
+    ],
+    nota: 'A tela é de uma conta de demonstração, com dados fictícios.',
+  },
+
+  preco: {
+    titulo: 'Quanto custa um sistema?',
+    texto:
+      'Depende do que entra na primeira versão. O valor é fechado por escopo: depois da conversa gratuita, você recebe por escrito o que vai ser feito, o prazo e o preço, e o pagamento é dividido pelos marcos de entrega.',
+    fatores: [
+      'Quantas telas e funções a primeira versão tem.',
+      'Quantos tipos de usuário e o que cada um pode ver e fazer.',
+      'Relatórios e painéis.',
+      'Ligação com outros sistemas, como nota fiscal, pagamento ou WhatsApp.',
+      'Trazer os dados que hoje estão nas planilhas.',
+      'Um app para celular junto com o sistema.',
+    ],
+    fecho:
+      'Na conversa, a gente separa o que precisa estar na primeira versão do que pode esperar. Começar pelo essencial é o que faz o primeiro sistema caber no seu momento.',
+  },
+
+  condicoes: [
+    {
+      nome: 'Primeira versão em 4 a 6 semanas.',
+      texto:
+        'Para a maioria dos projetos, é o tempo até o sistema estar no ar, com você e a equipe usando. O prazo exato vem escrito na proposta.',
+    },
+    {
+      nome: 'A hospedagem é sua.',
+      texto:
+        'O sistema roda em contas de hospedagem no seu nome. Quando a hospedagem tem custo, ele é pago direto ao provedor, sem intermediário.',
+    },
+    {
+      nome: 'O código é seu.',
+      texto:
+        'Repositório, domínio e contas ficam no seu nome desde o primeiro dia. Se um dia quiser seguir com outra pessoa, leva tudo.',
+    },
+  ],
+
+  perguntas: {
+    titulo: 'Perguntas sobre sistemas.',
+    itens: [
+      {
+        pergunta: 'Sistema sob medida ou sistema pronto: qual é melhor?',
+        resposta:
+          'Se existe um sistema pronto que resolve o seu caso, ele costuma sair mais barato, e a gente diz isso na conversa. O sob medida vale a pena quando o seu jeito de trabalhar é o que diferencia o negócio, ou quando você já tentou os prontos e acabou voltando para a planilha.',
+      },
+      {
+        pergunta: 'Preciso instalar alguma coisa?',
+        resposta:
+          'Não. O sistema abre no navegador, no computador ou no celular. Se a equipe precisar de um app, ele pode ser construído junto, ligado ao mesmo sistema.',
+      },
+      {
+        pergunta: 'Dá para trazer os dados da minha planilha?',
+        resposta:
+          'Sim. Clientes, produtos, estoque e o histórico que estão nas planilhas podem ser levados para o sistema. Isso entra no escopo da proposta.',
+      },
+      {
+        pergunta: 'O sistema conversa com o que eu já uso?',
+        resposta:
+          'Na maioria dos casos, sim: emissão de nota fiscal, meios de pagamento, WhatsApp e outros sistemas que ofereçam uma forma de integração. A gente confere cada um na conversa, antes da proposta.',
+      },
+      {
+        pergunta: 'E depois que o sistema estiver no ar?',
+        resposta:
+          'Correções de defeitos estão incluídas por 30 dias. Novas funções são planejadas e orçadas no mesmo modelo, quando fizerem sentido para o seu negócio.',
       },
       {
         pergunta: 'Minha ideia fica protegida?',

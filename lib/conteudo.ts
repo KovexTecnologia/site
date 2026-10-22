@@ -22,10 +22,9 @@ export const IDEIAS = [
  */
 export const SERVICOS = [
   {
-    nome: 'Sistemas web e plataformas',
-    texto:
-      'O sistema que organiza a operação do seu negócio, ou a plataforma que você vende por assinatura.',
-    pagina: null,
+    nome: 'Sistemas web',
+    texto: 'O sistema que organiza a operação do seu negócio, do pedido ao financeiro.',
+    pagina: '/desenvolvimento-de-sistemas',
   },
   {
     nome: 'Apps para celular',

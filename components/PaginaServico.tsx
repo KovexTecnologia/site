@@ -134,7 +134,7 @@ export function PaginaServico({ pagina }: { pagina: ConteudoServico }) {
 
         <section className="clara degraus overflow-hidden bg-branco py-secao text-navy">
           <div className="moldura grid items-center gap-16 lg:grid-cols-12 lg:gap-6">
-            <div className="lg:col-span-6">
+            <div className={pagina.prova.tela === 'app' ? 'lg:col-span-6' : 'lg:col-span-5'}>
               <p className="rotulo flex items-center gap-3 text-azul-escuro">
                 <span className="chevron" aria-hidden="true" />
                 Feito pela Kovex
@@ -156,19 +156,33 @@ export function PaginaServico({ pagina }: { pagina: ConteudoServico }) {
                 </a>
               </p>
             </div>
-            <div className="lg:col-span-5 lg:col-start-8">
-              {/* a mesma captura da home: conta demo, no app (Expo Web) em 390×845 a 3x */}
-              <div className="celular mx-auto w-[min(56vw,14rem)]">
+            {pagina.prova.tela === 'app' ? (
+              <div className="lg:col-span-5 lg:col-start-8">
+                {/* a mesma captura da home: conta demo, no app (Expo Web) em 390×845 a 3x */}
+                <div className="celular mx-auto w-[min(56vw,14rem)]">
+                  <Image
+                    src="/products/makerdesk-app.png"
+                    alt="Tela inicial do app do MakerDesk com o faturamento do mês e o gráfico financeiro dos últimos 6 meses"
+                    width={1170}
+                    height={2535}
+                    sizes="(min-width: 1024px) 14rem, 56vw"
+                    className="aspect-9/19.5 w-full"
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="lg:col-span-7 lg:pl-12">
+                {/* a mesma captura da home: conta demo, no web em 1376×860 a 2x */}
                 <Image
-                  src="/products/makerdesk-app.png"
-                  alt="Tela inicial do app do MakerDesk com o faturamento do mês e o gráfico financeiro dos últimos 6 meses"
-                  width={1170}
-                  height={2535}
-                  sizes="(min-width: 1024px) 14rem, 56vw"
-                  className="aspect-9/19.5 w-full"
+                  src="/products/makerdesk-relatorios.png"
+                  alt="Tela de Relatórios do MakerDesk com faturamento, receita por mês e status das encomendas de uma oficina de demonstração"
+                  width={2752}
+                  height={1720}
+                  sizes="(min-width: 1024px) 40rem, calc(100vw - 2rem)"
+                  className="aspect-16/10 w-full rounded-k shadow-[0_32px_64px_-32px_rgb(10_18_29/0.35)]"
                 />
               </div>
-            </div>
+            )}
           </div>
         </section>
 
