@@ -1,7 +1,8 @@
 # Kovex Tecnologia: site institucional
 
-Site da Kovex Tecnologia LTDA (CNPJ 68.036.280/0001-21). Uma página só, feita para levar quem tem
-uma ideia até uma conversa no WhatsApp, com o MakerDesk como prova do que a Kovex constrói.
+Site da Kovex Tecnologia LTDA (CNPJ 68.036.280/0001-21). A página inicial e uma página por serviço,
+todas feitas para levar quem tem uma ideia até uma conversa no WhatsApp, com o MakerDesk como prova do
+que a Kovex constrói.
 
 Next.js 16 (App Router, React 19, TypeScript), Tailwind CSS 4 e GSAP (ScrollTrigger e SplitText).
 Tudo estático, sem banco, sem formulário e sem CMS. Deploy na Vercel.
@@ -29,9 +30,11 @@ pnpm typecheck
 | Capturas do MakerDesk (painel, app e site) | `public/products/makerdesk-relatorios.png`, `makerdesk-app.png` e `makerdesk-landing.png` |
 
 Regra da copy, herdada da versão anterior: **nada de número, cliente ou prazo inventado.** Os únicos
-números do site (primeira versão em 4 a 6 semanas, 30 dias de correções, resposta em até 24 horas) são
-compromissos confirmados pela Kovex. Os números que aparecem dentro das capturas do MakerDesk são de uma
-oficina de demonstração, não afirmação da Kovex.
+números do site são compromissos confirmados pela Kovex: primeira versão em 4 a 6 semanas, 30 dias de
+correções e resposta em até 24 horas; na página de sites, landing page em até 1 semana, site da empresa
+em até 2 e landing page de uma página, com o texto do cliente, a partir de R$ 200. A nota 100 do
+PageSpeed citada na página de sites é uma medição real, com data. Os números que aparecem dentro das
+capturas do MakerDesk são de uma oficina de demonstração, não afirmação da Kovex.
 
 ### Capturas do MakerDesk
 
@@ -126,6 +129,16 @@ Cada página tem a própria mensagem do WhatsApp, que diz de onde a pessoa veio.
 o próprio `openGraph` perde a imagem do `app/opengraph-image.png`, por isso `metadataDoServico` a
 declara de novo.
 
+Campos opcionais do `ConteudoServico`, para quando a página foge do padrão da home:
+
+- `destaques` troca a faixa de fatos da abertura, e `etapas.lista` troca as quatro etapas. A página
+  de sites usa os dois, porque a faixa e a etapa 3 da home dizem "4 a 6 semanas".
+- `preco.destaque` põe uma linha de preço em evidência abaixo do título da seção.
+- `prova.tela` escolhe a captura do MakerDesk: `app` (o celular), `painel` (Relatórios) ou `site`
+  (a primeira tela de www.makerdesk.com.br).
+
+Hoje existem `/desenvolvimento-de-aplicativos`, `/desenvolvimento-de-sistemas` e `/criacao-de-sites`.
+
 ## Histórico
 
 - **Agosto de 2026:** primeiro site, com métricas e cases de exemplo.
@@ -135,4 +148,6 @@ declara de novo.
   estrutura da política de privacidade, os redirects de domínio, o bloqueio de preview no robots, a
   marca do MakerDesk e o favicon. A pasta `brand/` é o kit de marca, e `backup/` guarda as
   explorações de logo. Em 21/10/2026 as capturas reais do MakerDesk entraram no lugar dos espaços
-  reservados, e o site foi publicado no projeto `kovex-site` da Vercel.
+  reservados, e o site foi publicado no projeto `kovex-site` da Vercel. Em 22/10/2026 o título e o H1
+  da home ganharam as palavras de busca, o domínio entrou no Search Console e no Bing, e foram ao ar as
+  páginas de aplicativos, sistemas web e sites, cada uma com a sua mensagem de WhatsApp.
