@@ -552,17 +552,6 @@
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Espaços reservados para as capturas (só no layout preliminar)       */
-/* ------------------------------------------------------------------ */
-
-.reserva {
-  background:
-    repeating-linear-gradient(135deg, rgb(10 18 29 / 0.035) 0 1px, transparent 1px 12px),
-    #e4eaf3;
-  border: 1px solid var(--color-fio-claro);
-}
-
 /* moldura de celular: o único canto que não é 4px, porque desenha um objeto */
 .celular {
   border-radius: 2.25rem;

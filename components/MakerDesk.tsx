@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { Reserva } from '@/components/Reserva'
 import { MAKERDESK_APP_STORE_URL, MAKERDESK_PLAY_STORE_URL, MAKERDESK_URL } from '@/lib/site'
 
 const LOJAS = [
@@ -44,19 +43,26 @@ export function MakerDesk() {
         </div>
 
         <div className="relative pb-24 lg:col-span-7 lg:pb-16 lg:pl-12">
-          <Reserva
-            tipo="Captura de tela · 16:10"
-            assunto="Painel do MakerDesk"
-            detalhe="Visão geral de uma oficina de demonstração, com dados fictícios. O canto coberto pelo celular não leva informação importante. Entra na etapa 5B."
-            className="aspect-16/10 w-full rounded-k pr-[34%] shadow-[0_32px_64px_-32px_rgb(10_18_29/0.35)] lg:items-end lg:pr-4 lg:pl-[32%] lg:text-right"
+          {/* conta demo do MakerDesk, com dados fictícios, capturada em 1376×860 a 2x: nessa largura os
+              cards não quebram linha, e o canto que o celular cobre no computador é só a barra lateral */}
+          <Image
+            src="/products/makerdesk-relatorios.png"
+            alt="Tela de Relatórios do MakerDesk com faturamento, receita por mês e status das encomendas de uma oficina de demonstração"
+            width={2752}
+            height={1720}
+            sizes="(min-width: 1024px) 40rem, calc(100vw - 2rem)"
+            className="aspect-16/10 w-full rounded-k shadow-[0_32px_64px_-32px_rgb(10_18_29/0.35)]"
           />
           {/* no celular o aparelho fica à direita; no computador, à esquerda, sobre o painel */}
           <div className="celular absolute right-4 bottom-0 w-[clamp(5.5rem,26%,10.5rem)] lg:right-auto lg:-left-6">
-            <Reserva
-              tipo="App · 9:19,5"
-              assunto="Tela do app"
-              detalhe="Mesma oficina demo."
-              className="aspect-9/19.5 p-3"
+            {/* mesma conta demo, no app (Expo Web) em 390×845 a 3x */}
+            <Image
+              src="/products/makerdesk-app.png"
+              alt="Tela inicial do app do MakerDesk com o faturamento do mês e o gráfico financeiro dos últimos 6 meses"
+              width={1170}
+              height={2535}
+              sizes="(min-width: 1024px) 9.25rem, 26vw"
+              className="aspect-9/19.5 w-full"
             />
           </div>
         </div>
