@@ -13,6 +13,21 @@ import type { ConteudoServico } from '@/lib/servicos'
 import { MAKERDESK_URL, RESPONSE_TIME, whatsappUrl } from '@/lib/site'
 
 /**
+ * As capturas largas do MakerDesk que servem de prova, todas em 1376×860 a 2x: o painel
+ * da conta demo (a mesma da home) e a primeira tela do site no ar, sem o aviso de cookies.
+ */
+const TELAS_LARGAS = {
+  painel: {
+    src: '/products/makerdesk-relatorios.png',
+    alt: 'Tela de Relatórios do MakerDesk com faturamento, receita por mês e status das encomendas de uma oficina de demonstração',
+  },
+  site: {
+    src: '/products/makerdesk-landing.png',
+    alt: 'Primeira tela do site do MakerDesk, com o título "Saiba quanto cada peça impressa em 3D realmente te dá de lucro" e o cálculo de preço de um vaso',
+  },
+}
+
+/**
  * Modelo das páginas de serviço (layout aprovado em 2026-10-22): a cara da home,
  * mais curta e sem as animações de rolagem. As faixas alternam como na home
  * (navy, superfície, navy, clara, navy, superfície, navy): os degraus da seção
@@ -72,7 +87,7 @@ export function PaginaServico({ pagina }: { pagina: ConteudoServico }) {
             </div>
 
             <ul className="grid gap-4 border-t border-fio pt-8 lg:col-span-12 lg:mt-8 lg:flex lg:flex-wrap lg:gap-x-16 lg:gap-y-4">
-              {DESTAQUES.map((destaque) => (
+              {(pagina.destaques ?? DESTAQUES).map((destaque) => (
                 <li key={destaque} className="flex items-center gap-4 font-semibold">
                   <span className="h-1 w-6 shrink-0 rounded-k bg-azul" aria-hidden="true" />
                   {destaque}
@@ -117,7 +132,7 @@ export function PaginaServico({ pagina }: { pagina: ConteudoServico }) {
             <div className="lg:col-span-6 lg:col-start-7">
               {/* as etapas da home, em lista: aqui não há a área presa com o vidro */}
               <ol className="border-b border-fio">
-                {ETAPAS.map((etapa, k) => (
+                {(pagina.etapas.lista ?? ETAPAS).map((etapa, k) => (
                   <li key={etapa.nome} className="grid grid-cols-[3rem_1fr] border-t border-fio py-6">
                     <span className="rotulo pt-2 text-azul-claro">{String(k + 1).padStart(2, '0')}</span>
                     <div>
@@ -172,10 +187,9 @@ export function PaginaServico({ pagina }: { pagina: ConteudoServico }) {
               </div>
             ) : (
               <div className="lg:col-span-7 lg:pl-12">
-                {/* a mesma captura da home: conta demo, no web em 1376×860 a 2x */}
                 <Image
-                  src="/products/makerdesk-relatorios.png"
-                  alt="Tela de Relatórios do MakerDesk com faturamento, receita por mês e status das encomendas de uma oficina de demonstração"
+                  src={TELAS_LARGAS[pagina.prova.tela].src}
+                  alt={TELAS_LARGAS[pagina.prova.tela].alt}
                   width={2752}
                   height={1720}
                   sizes="(min-width: 1024px) 40rem, calc(100vw - 2rem)"
@@ -190,6 +204,9 @@ export function PaginaServico({ pagina }: { pagina: ConteudoServico }) {
           <div className="moldura grid gap-12 lg:grid-cols-12 lg:gap-6">
             <div className="lg:col-span-5">
               <h2 className="max-w-[14ch] font-display text-titulo font-bold">{pagina.preco.titulo}</h2>
+              {pagina.preco.destaque && (
+                <p className="mt-8 font-display text-subtitulo font-bold text-azul-claro">{pagina.preco.destaque}</p>
+              )}
               <p className="mt-8 max-w-texto text-abertura text-apoio">{pagina.preco.texto}</p>
             </div>
             <div className="lg:col-span-6 lg:col-start-7">

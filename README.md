@@ -26,7 +26,7 @@ pnpm typecheck
 | Uma seção por arquivo | `components/` |
 | Política de privacidade | `app/privacidade/page.tsx` |
 | Imagem de compartilhamento | `docs/og/og.html` (gera `app/opengraph-image.png` e `app/twitter-image.png`) |
-| Capturas do MakerDesk (painel e app) | `public/products/makerdesk-relatorios.png` e `makerdesk-app.png` |
+| Capturas do MakerDesk (painel, app e site) | `public/products/makerdesk-relatorios.png`, `makerdesk-app.png` e `makerdesk-landing.png` |
 
 Regra da copy, herdada da versão anterior: **nada de número, cliente ou prazo inventado.** Os únicos
 números do site (primeira versão em 4 a 6 semanas, 30 dias de correções, resposta em até 24 horas) são
@@ -43,6 +43,9 @@ MakerDesk), com dados fictícios. Para trocar, mantenha o nome e o tamanho de ca
   os textos dos cards quebram e o menu é cortado.
 - **App:** a tela Início do app em 390×845 a 3x (1170×2535, 9:19,5). Tirada pelo Expo Web, sem o aviso
   de desenvolvimento e com o mouse fora dos gráficos (senão o tooltip sai no print).
+- **Site:** a primeira tela de www.makerdesk.com.br em 1376×860 a 2x (2752×1720), usada como prova na
+  página de sites. O aviso de cookies sai por CSS na captura, sem aceitar (aceitar carrega o Analytics e
+  conta uma visita). O PNG passa por uma paleta de 256 cores com o `sharp` para ficar perto de 200 KB.
 
 Com o `pnpm dev` rodando, apague `.next/dev/cache/images` depois de trocar uma captura: o servidor
 guarda a versão otimizada pela URL e continua mostrando a antiga.

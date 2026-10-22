@@ -34,7 +34,7 @@ export const SERVICOS = [
   {
     nome: 'Sites e landing pages',
     texto: 'A página que apresenta sua ideia, explica a oferta e traz os primeiros contatos.',
-    pagina: null,
+    pagina: '/criacao-de-sites',
   },
   {
     nome: 'Automação e IA',
