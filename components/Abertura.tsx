@@ -26,6 +26,8 @@ export function Abertura() {
           type: 'lines',
           mask: 'lines',
           autoSplit: true,
+          // o alvo é um span dentro do H1, onde aria-label não vale; as linhas são lidas em ordem
+          aria: 'none',
           onSplit(self) {
             gsap.set(titulo, { visibility: 'visible' })
             return gsap.from(self.lines, { yPercent: 110, duration: 0.9, ease: EASE, stagger: 0.08 })
@@ -74,8 +76,16 @@ export function Abertura() {
     >
       <div className="moldura grid items-center gap-12 pt-8 lg:grid-cols-12 lg:gap-6 lg:pt-6">
         <div className="relative z-(--z-conteudo) lg:col-span-8">
-          <h1 data-entrada-linhas className="max-w-[15ch] font-display text-gigante font-bold">
-            Sua ideia vira produto, camada por camada.
+          {/* o rótulo leva as palavras de busca para dentro do H1; só a frase entra por linhas */}
+          <h1>
+            <span className="rotulo flex items-baseline gap-3 text-azul-claro">
+              <span className="chevron" aria-hidden="true" />
+              Desenvolvimento de sistemas, apps e sites sob medida
+            </span>
+            <span className="sr-only">. </span>
+            <span data-entrada-linhas className="mt-6 block max-w-[15ch] font-display text-gigante font-bold">
+              Sua ideia vira produto, camada por camada.
+            </span>
           </h1>
           <p className="mt-8 max-w-texto text-abertura text-apoio">
             A Kovex desenvolve sistemas, apps e sites para empreendedores que têm uma ideia e querem vê-la

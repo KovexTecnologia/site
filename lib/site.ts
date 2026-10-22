@@ -1,8 +1,12 @@
 export const SITE_URL = 'https://kovex.com.br'
 export const SITE_NAME = 'Kovex Tecnologia'
-export const SITE_TITLE = 'Kovex Tecnologia · Sistemas, apps e sites para quem tem uma ideia'
+/**
+ * Title e description com as palavras que as pessoas buscam (decisão de 2026-10-22).
+ * Até ~60 e ~155 caracteres, para o Google não cortar.
+ */
+export const SITE_TITLE = 'Desenvolvimento de sistemas, apps e sites sob medida · Kovex'
 export const SITE_DESCRIPTION =
-  'A Kovex desenvolve sistemas, apps e sites para empreendedores que têm uma ideia e querem vê-la funcionando. Primeira versão no ar em 4 a 6 semanas, valor fechado e código no seu nome.'
+  'Sistemas web, aplicativos e sites sob medida para quem tem uma ideia. Primeira versão no ar em 4 a 6 semanas, valor fechado e código no seu nome.'
 
 /**
  * Dados formais: aparecem no rodapé, na privacidade e no JSON-LD. Endereço e data
