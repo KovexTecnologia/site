@@ -1,18 +1,23 @@
 import { CTA_LABEL, WHATSAPP_URL } from '@/lib/site'
 
-/** A ação principal do site: abre o WhatsApp com a mensagem pronta. `compacto` só muda o tamanho. */
+/**
+ * A ação principal do site: abre o WhatsApp com a mensagem pronta. `compacto` só muda o tamanho;
+ * `href` troca a mensagem nas páginas de serviço.
+ */
 export function BotaoWhatsApp({
   compacto = false,
   className = '',
+  href = WHATSAPP_URL,
   onClick,
 }: {
   compacto?: boolean
   className?: string
+  href?: string
   onClick?: () => void
 }) {
   return (
     <a
-      href={WHATSAPP_URL}
+      href={href}
       target="_blank"
       rel="noopener"
       className={`botao ${compacto ? 'botao--compacto' : ''} ${className}`}

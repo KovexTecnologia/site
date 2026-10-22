@@ -59,6 +59,7 @@ const organizacao = {
       description: servico.texto,
       provider: { '@id': orgId },
       areaServed: 'BR',
+      ...(servico.pagina && { url: `${SITE_URL}${servico.pagina}` }),
     },
   })),
   contactPoint: [
@@ -89,6 +90,25 @@ export function SiteJsonLd() {
             publisher: { '@id': orgId },
           },
         ],
+      }}
+    />
+  )
+}
+
+/** O serviço de uma página de serviço, oferecido pela mesma organização do `SiteJsonLd`. */
+export function ServicoJsonLd({ nome, descricao, caminho }: { nome: string; descricao: string; caminho: string }) {
+  return (
+    <JsonLd
+      data={{
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        '@id': `${SITE_URL}${caminho}#servico`,
+        name: nome,
+        serviceType: nome,
+        description: descricao,
+        url: `${SITE_URL}${caminho}`,
+        provider: { '@id': orgId },
+        areaServed: { '@type': 'Country', name: 'Brasil' },
       }}
     />
   )

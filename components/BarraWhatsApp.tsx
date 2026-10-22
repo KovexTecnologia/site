@@ -10,7 +10,7 @@ import { BotaoWhatsApp } from '@/components/BotaoWhatsApp'
  * botões iguais na tela. Sem JavaScript ela não aparece, e os botões da própria
  * página continuam lá.
  */
-export function BarraWhatsApp() {
+export function BarraWhatsApp({ whatsapp }: { whatsapp?: string }) {
   const barra = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export function BarraWhatsApp() {
       className="barra-whatsapp fixed inset-x-0 bottom-0 z-(--z-cabecalho) border-t border-fio lg:hidden"
     >
       <div className="moldura pt-3">
-        <BotaoWhatsApp className="w-full" />
+        <BotaoWhatsApp href={whatsapp} className="w-full" />
       </div>
     </div>
   )

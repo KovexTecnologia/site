@@ -16,24 +16,32 @@ export const IDEIAS = [
   'Uma plataforma para vender seu serviço por assinatura.',
 ] as const
 
+/**
+ * `pagina` é o endereço da página do serviço (fase 4 do plano de SEO), ou `null`
+ * enquanto ela não existe: com página, o nome vira link na home e entra no rodapé.
+ */
 export const SERVICOS = [
   {
     nome: 'Sistemas web e plataformas',
     texto:
       'O sistema que organiza a operação do seu negócio, ou a plataforma que você vende por assinatura.',
+    pagina: null,
   },
   {
     nome: 'Apps para celular',
     texto: 'Aplicativo para iPhone e Android, para seus clientes ou para a sua equipe.',
+    pagina: '/desenvolvimento-de-aplicativos',
   },
   {
     nome: 'Sites e landing pages',
     texto: 'A página que apresenta sua ideia, explica a oferta e traz os primeiros contatos.',
+    pagina: null,
   },
   {
     nome: 'Automação e IA',
     texto:
       'Tarefas repetitivas resolvidas por software, com inteligência artificial onde ela ajuda de verdade.',
+    pagina: null,
   },
 ] as const
 

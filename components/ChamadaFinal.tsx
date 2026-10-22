@@ -10,7 +10,7 @@ import { CONTACT_EMAIL, RESPONSE_TIME } from '@/lib/site'
  * Chamada final: as camadas que estavam soltas na abertura se fecham e formam o K
  * enquanto a seção entra na tela. Sem movimento, o K já aparece fechado.
  */
-export function ChamadaFinal() {
+export function ChamadaFinal({ whatsapp }: { whatsapp?: string }) {
   const secao = useRef<HTMLElement>(null)
 
   useGSAP(
@@ -54,7 +54,7 @@ export function ChamadaFinal() {
           <p className="mt-8 max-w-texto text-abertura text-apoio">
             Sem compromisso e sem jargão. Você sai da conversa sabendo por onde começar.
           </p>
-          <BotaoWhatsApp className="mt-12" />
+          <BotaoWhatsApp href={whatsapp} className="mt-12" />
           <p className="mt-6 text-apoio">
             {RESPONSE_TIME} Prefere e-mail?{' '}
             <a href={`mailto:${CONTACT_EMAIL}`} className="link">

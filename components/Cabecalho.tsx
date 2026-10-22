@@ -9,8 +9,11 @@ import { MENU } from '@/lib/site'
  * Cabeçalho fixo que reage à rolagem (componente cabecalho-rolagem da skill):
  * ganha fundo depois de 40px, sai de cena rolando para baixo e volta rolando para
  * cima. No celular o menu é um <details>, que abre e fecha mesmo sem JavaScript.
+ *
+ * `base` é "/" fora da página inicial, como no rodapé: o menu leva às seções dela.
+ * `whatsapp` troca a mensagem do botão nas páginas de serviço.
  */
-export function Cabecalho() {
+export function Cabecalho({ base = '', whatsapp }: { base?: '' | '/'; whatsapp?: string }) {
   const cabecalho = useRef<HTMLElement>(null)
   const menu = useRef<HTMLDetailsElement>(null)
 
@@ -41,6 +44,7 @@ export function Cabecalho() {
     // marca no menu a seção que está na tela e mantém o endereço igual a ela: sem
     // isso, o "#como-funciona" de um clique ficava no endereço depois de voltar ao
     // topo, e atualizar a página pulava de novo para lá. Na abertura o "#" sai.
+    // Fora da inicial o menu aponta para ela, e o endereço fica como está.
     const links = [...el.querySelectorAll<HTMLAnchorElement>('nav[data-principal] a[href^="#"]')]
     const observador = new IntersectionObserver(
       (entradas) => {
@@ -60,7 +64,7 @@ export function Cabecalho() {
       },
       { rootMargin: '-45% 0px -50% 0px' },
     )
-    document.querySelectorAll('main section[id]').forEach((secao) => observador.observe(secao))
+    if (!base) document.querySelectorAll('main section[id]').forEach((secao) => observador.observe(secao))
 
     atualizar()
     window.addEventListener('scroll', atualizar, { passive: true })
@@ -72,7 +76,7 @@ export function Cabecalho() {
       el.removeEventListener('focusin', mostrar)
       observador.disconnect()
     }
-  }, [])
+  }, [base])
 
   const fecharMenu = () => {
     if (menu.current) menu.current.open = false
@@ -84,7 +88,7 @@ export function Cabecalho() {
       className="cabecalho fixed inset-x-0 top-0 z-(--z-cabecalho) border-b border-transparent"
     >
       <div className="moldura flex h-cabecalho items-center justify-between gap-6">
-        <a href="#topo" className="flex min-h-11 items-center" aria-label="Kovex, voltar ao início">
+        <a href={base || '#topo'} className="flex min-h-11 items-center" aria-label="Kovex, voltar ao início">
           <Image
             src="/brand/kovex-lockup-horizontal-dark.svg"
             alt=""
@@ -100,13 +104,13 @@ export function Cabecalho() {
           {MENU.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={`${base}${item.href}`}
               className="menu-link text-apoio transition-colors hover:text-branco aria-[current]:text-branco"
             >
               {item.label}
             </a>
           ))}
-          <BotaoWhatsApp compacto />
+          <BotaoWhatsApp compacto href={whatsapp} />
         </nav>
 
         <details ref={menu} className="menu-movel lg:hidden">
@@ -123,7 +127,7 @@ export function Cabecalho() {
               {MENU.map((item) => (
                 <li key={item.href} className="border-b border-fio">
                   <a
-                    href={item.href}
+                    href={`${base}${item.href}`}
                     onClick={fecharMenu}
                     className="flex min-h-12 items-center py-3 font-display text-subtitulo font-bold"
                   >
@@ -132,7 +136,7 @@ export function Cabecalho() {
                 </li>
               ))}
               <li className="mt-6">
-                <BotaoWhatsApp className="w-full" onClick={fecharMenu} />
+                <BotaoWhatsApp className="w-full" href={whatsapp} onClick={fecharMenu} />
               </li>
             </ul>
           </nav>

@@ -19,6 +19,8 @@ pnpm typecheck
 | O que | Arquivo |
 |---|---|
 | Textos da página (serviços, etapas, compromissos, perguntas, exemplos) | `lib/conteudo.ts` |
+| Páginas de serviço: texto, title, description e mensagem do WhatsApp | `lib/servicos.ts` |
+| Layout das páginas de serviço (um modelo só para todas) | `components/PaginaServico.tsx` |
 | Dados da empresa, WhatsApp, e-mail, prazo de resposta, links das lojas | `lib/site.ts` |
 | Cores, tipografia, escala de espaço e o vidro em 3D | `app/globals.css` |
 | Uma seção por arquivo | `components/` |
@@ -102,14 +104,24 @@ ou passa a cair no spam.
 
 - Metadados, canonical, Open Graph e Twitter Card em `app/layout.tsx`.
 - JSON-LD em `components/JsonLd.tsx`: `Organization` com razão social, CNPJ, endereço, data de
-  abertura, o MakerDesk como `brand` e os serviços como `makesOffer`; `WebSite`; e `BreadcrumbList`
-  na política de privacidade. Não tem `sameAs` porque ainda não existem perfis em redes sociais.
+  abertura, o MakerDesk como `brand` e os serviços como `makesOffer` (com `url` quando têm página);
+  `WebSite`; `BreadcrumbList` na política de privacidade e nas páginas de serviço; e `Service` em cada
+  página de serviço. Não tem `sameAs` porque ainda não existem perfis em redes sociais.
 - `robots.txt` bloqueia os deploys de preview da Vercel.
-- Pendente desde o primeiro deploy (21/10/2026): cadastrar o domínio no Google Search Console, enviar
-  `https://kovex.com.br/sitemap.xml` e rodar o
-  [Rich Results Test](https://search.google.com/test/rich-results). Se o Google pedir verificação por
-  registro TXT, ele entra no DNS da Vercel; pela meta tag, é a variável
-  `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` do projeto.
+- Google Search Console desde 22/10/2026, como propriedade de Domínio verificada por registro TXT no
+  DNS da Vercel (não apague esse registro), com o sitemap enviado. O Bing Webmaster Tools importou o
+  site de lá. A variável `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` não é usada.
+
+### Página de serviço nova
+
+1. O texto, com a aprovação do Paulo, vira um objeto `ConteudoServico` em `lib/servicos.ts`.
+2. A rota é um `app/<endereço>/page.tsx` de três linhas, como `app/desenvolvimento-de-aplicativos`.
+3. Em `SERVICOS` (`lib/conteudo.ts`), o serviço ganha `pagina` com o endereço. Com isso, o nome
+   vira link na home, a página entra no sitemap e no rodapé, e o `Organization` ganha a `url`.
+
+Cada página tem a própria mensagem do WhatsApp, que diz de onde a pessoa veio. Uma página que define
+o próprio `openGraph` perde a imagem do `app/opengraph-image.png`, por isso `metadataDoServico` a
+declara de novo.
 
 ## Histórico
 

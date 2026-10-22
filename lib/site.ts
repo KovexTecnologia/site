@@ -40,7 +40,10 @@ export const WHATSAPP_NUMBER = '5579981348819'
 export const WHATSAPP_DISPLAY = `(${WHATSAPP_NUMBER.slice(2, 4)}) ${WHATSAPP_NUMBER.slice(4, 9)}-${WHATSAPP_NUMBER.slice(9)}`
 export const WHATSAPP_MESSAGE =
   'Olá, Kovex! Vim pelo site. Tenho uma ideia e quero entender por onde começar.'
-export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+/** Cada página de serviço tem a própria mensagem, que diz de onde a pessoa veio (decisão de 2026-10-22). */
+export const whatsappUrl = (mensagem: string) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`
+export const WHATSAPP_URL = whatsappUrl(WHATSAPP_MESSAGE)
 
 /** Formato E.164 para o JSON-LD. Assume celular brasileiro (13 dígitos). */
 export const PHONE_E164 = `+${WHATSAPP_NUMBER.slice(0, 2)}-${WHATSAPP_NUMBER.slice(2, 4)}-${WHATSAPP_NUMBER.slice(4, 9)}-${WHATSAPP_NUMBER.slice(9)}`

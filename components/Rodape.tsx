@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { SERVICOS } from '@/lib/conteudo'
 import {
   COMPANY_CITY,
   COMPANY_CNPJ,
@@ -11,12 +12,16 @@ import {
   WHATSAPP_URL,
 } from '@/lib/site'
 
-/** `base` é "/" fora da página inicial, para os links de seção voltarem a ela. */
-export function Rodape({ base = '' }: { base?: '' | '/' }) {
+/**
+ * `base` é "/" fora da página inicial, para os links de seção voltarem a ela.
+ * "Serviços" lista só os serviços que já têm página. `whatsapp` troca a mensagem
+ * nas páginas de serviço.
+ */
+export function Rodape({ base = '', whatsapp = WHATSAPP_URL }: { base?: '' | '/'; whatsapp?: string }) {
   return (
     <footer className="border-t border-fio pt-16 pb-12">
       <div className="moldura grid gap-12 lg:grid-cols-12 lg:gap-6">
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-4">
           <Image
             src="/brand/kovex-lockup-horizontal-tagline-dark.svg"
             alt="Kovex Tecnologia"
@@ -28,7 +33,26 @@ export function Rodape({ base = '' }: { base?: '' | '/' }) {
           <p className="mt-6 max-w-[24ch] text-apoio">Sistemas, apps e sites para quem tem uma ideia.</p>
         </div>
 
-        <nav aria-label="Rodapé" className="lg:col-span-3 lg:col-start-7">
+        <nav aria-label="Serviços" className="lg:col-span-3">
+          <p className="rotulo text-discreto">Serviços</p>
+          <ul className="mt-4 grid gap-1">
+            {SERVICOS.map(
+              (servico) =>
+                servico.pagina && (
+                  <li key={servico.pagina}>
+                    <Link
+                      href={servico.pagina}
+                      className="menu-link inline-flex min-h-11 items-center text-apoio hover:text-branco"
+                    >
+                      {servico.nome}
+                    </Link>
+                  </li>
+                ),
+            )}
+          </ul>
+        </nav>
+
+        <nav aria-label="Rodapé" className="lg:col-span-2">
           <p className="rotulo text-discreto">Página</p>
           <ul className="mt-4 grid gap-1">
             {MENU.map((item) => (
@@ -49,7 +73,7 @@ export function Rodape({ base = '' }: { base?: '' | '/' }) {
           <ul className="mt-4 grid gap-1">
             <li>
               <a
-                href={WHATSAPP_URL}
+                href={whatsapp}
                 target="_blank"
                 rel="noopener"
                 className="menu-link inline-flex min-h-11 items-center text-apoio hover:text-branco"
